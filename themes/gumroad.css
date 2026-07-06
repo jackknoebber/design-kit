@@ -4,12 +4,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap');
 
 /* ===========================================================================
-   gumroad — brutalist-playful design system (SEED DRAFT).
-   Hand-authored from the known Gumroad palette: pink #FF90E8 on white cards,
-   BLACK 1px borders, hard offset shadows, warm off-white canvas, squarish
-   corners. To be refined against Jack's Figma copy via
-   scripts/ingest-figma.mjs (colors/type/radii report) — especially the
-   typeface: Gumroad uses Mabry Pro (licensed); the stack falls back cleanly.
+   gumroad — brutalist-playful design system.
+   Values refined 2026-07-06 against Jack's Figma copy of the Gumroad Design
+   System (Community Beta) via scripts/ingest-figma.mjs — see
+   themes/gumroad.report.md for the file's palette/type/radii/shadow inventory.
+   Pink #FF90E8 + stone-neutral ramp, BLACK 1px borders, hard offset shadows
+   (4px/8px), 4px-dominant corners. Typeface: Mabry Pro (licensed; Archivo is
+   the loaded free stand-in).
 
    Activate: import this file (after styles.css) and set
    <html data-design="gumroad">. Combines with data-theme="dark".
@@ -25,21 +26,21 @@
   --md-sys-shape-corner-none: 0px;
   --md-sys-shape-corner-extra-small: 2px;
   --md-sys-shape-corner-small: 4px;
-  --md-sys-shape-corner-medium: 6px;
+  --md-sys-shape-corner-medium: 4px;
   --md-sys-shape-corner-large: 8px;
-  --md-sys-shape-corner-large-increased: 10px;
-  --md-sys-shape-corner-extra-large: 12px;
-  --md-sys-shape-corner-extra-large-increased: 16px;
-  --md-sys-shape-corner-extra-extra-large: 24px;
+  --md-sys-shape-corner-large-increased: 12px;
+  --md-sys-shape-corner-extra-large: 24px;
+  --md-sys-shape-corner-extra-large-increased: 24px;
+  --md-sys-shape-corner-extra-extra-large: 32px;
   --md-sys-shape-corner-full: 9999px;
 
   /* Identity: black borders + hard offset shadows on floating surfaces */
   --dk-border-width: 1px;
   --md-sys-elevation-level1: 2px 2px 0 0 var(--md-sys-color-shadow);
   --md-sys-elevation-level2: 4px 4px 0 0 var(--md-sys-color-shadow);
-  --md-sys-elevation-level3: 6px 6px 0 0 var(--md-sys-color-shadow);
+  --md-sys-elevation-level3: 8px 8px 0 0 var(--md-sys-color-shadow);
   --md-sys-elevation-level4: 8px 8px 0 0 var(--md-sys-color-shadow);
-  --md-sys-elevation-level5: 10px 10px 0 0 var(--md-sys-color-shadow);
+  --md-sys-elevation-level5: 12px 12px 0 0 var(--md-sys-color-shadow);
 }
 
 /* ---- Light ---- */
@@ -54,7 +55,7 @@
   /* Secondary — Gumroad green */
   --md-sys-color-secondary: rgb(35, 160, 148);
   --md-sys-color-on-secondary: rgb(0, 0, 0);
-  --md-sys-color-secondary-container: rgb(190, 235, 229);
+  --md-sys-color-secondary-container: rgb(211, 243, 240);
   --md-sys-color-on-secondary-container: rgb(0, 0, 0);
   /* Tertiary — Gumroad periwinkle */
   --md-sys-color-tertiary: rgb(144, 168, 237);
@@ -68,20 +69,20 @@
   --md-sys-color-on-error-container: rgb(0, 0, 0);
   /* Surfaces — white cards on warm off-white canvas, pure black ink */
   --md-sys-color-background: rgb(244, 244, 240);
-  --md-sys-color-on-background: rgb(0, 0, 0);
+  --md-sys-color-on-background: rgb(28, 25, 23);
   --md-sys-color-surface: rgb(255, 255, 255);
-  --md-sys-color-on-surface: rgb(0, 0, 0);
-  --md-sys-color-surface-variant: rgb(232, 232, 226);
-  --md-sys-color-on-surface-variant: rgb(82, 82, 78);
-  --md-sys-color-surface-dim: rgb(228, 228, 222);
+  --md-sys-color-on-surface: rgb(28, 25, 23);
+  --md-sys-color-surface-variant: rgb(231, 229, 228);
+  --md-sys-color-on-surface-variant: rgb(120, 113, 108);
+  --md-sys-color-surface-dim: rgb(214, 211, 209);
   --md-sys-color-surface-bright: rgb(255, 255, 255);
   --md-sys-color-surface-container-lowest: rgb(255, 255, 255);
-  --md-sys-color-surface-container-low: rgb(249, 249, 246);
+  --md-sys-color-surface-container-low: rgb(251, 251, 249);
   --md-sys-color-surface-container: rgb(244, 244, 240);
-  --md-sys-color-surface-container-high: rgb(238, 238, 233);
-  --md-sys-color-surface-container-highest: rgb(232, 232, 226);
+  --md-sys-color-surface-container-high: rgb(239, 239, 233);
+  --md-sys-color-surface-container-highest: rgb(231, 229, 228);
   --md-sys-color-surface-tint: rgb(255, 144, 232);
-  --md-sys-color-inverse-surface: rgb(0, 0, 0);
+  --md-sys-color-inverse-surface: rgb(28, 25, 23);
   --md-sys-color-inverse-on-surface: rgb(255, 255, 255);
   /* Outline — BLACK borders are the identity */
   --md-sys-color-outline: rgb(0, 0, 0);
