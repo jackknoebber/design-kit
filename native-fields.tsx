@@ -35,10 +35,20 @@ const controlStyle: CSSProperties = {
   border: 'none',
   background: 'transparent',
   font: "400 16px/24px var(--md-ref-typeface-plain)",
+  lineHeight: '24px',
   color: 'var(--md-sys-color-on-surface)',
   outline: 'none',
-  padding: '20px 16px 0',
+  // 23px top = exactly where TextField's input sits (padding box 55 − 8 bottom
+  // − 24 line), so select/date values align with text-field values to the px.
+  padding: '23px 16px 0',
   boxSizing: 'border-box',
+  // Native selects/dates vertically center their value in the box (especially
+  // iOS), ignoring the top padding — the value rides up into the floating
+  // label. appearance:none makes the padding authoritative so values sit
+  // exactly where TextField's do. (The select then needs its own dropdown
+  // arrow — drawn in M3Select below.)
+  WebkitAppearance: 'none',
+  appearance: 'none',
 };
 
 export function M3Select({
@@ -63,10 +73,26 @@ export function M3Select({
         onChange={onChange}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
-        style={{ ...controlStyle, cursor: 'pointer' }}
+        style={{ ...controlStyle, cursor: 'pointer', paddingRight: 36 }}
       >
         {children}
       </select>
+      {/* appearance:none removes the native arrow — draw our own (CSS chevron). */}
+      <span
+        aria-hidden
+        style={{
+          position: 'absolute',
+          right: 16,
+          top: '50%',
+          width: 8,
+          height: 8,
+          marginTop: -6,
+          border: 'solid var(--md-sys-color-on-surface-variant)',
+          borderWidth: '0 2px 2px 0',
+          transform: 'rotate(45deg)',
+          pointerEvents: 'none',
+        }}
+      />
     </div>
   );
 }
