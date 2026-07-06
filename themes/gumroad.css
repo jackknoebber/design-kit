@@ -84,9 +84,13 @@
   --md-sys-color-surface-tint: rgb(255, 144, 232);
   --md-sys-color-inverse-surface: rgb(28, 25, 23);
   --md-sys-color-inverse-on-surface: rgb(255, 255, 255);
-  /* Outline — BLACK borders are the identity */
+  /* Outline: BLACK component borders are the identity (outline), but
+     outline-variant is the SUBTLE hairline role — calendar grid lines, table
+     borders, dividers — and stays stone gray (gray/300 from the file) so
+     grids don't shout. Components that should read black say so explicitly
+     in the structural block below. */
   --md-sys-color-outline: rgb(0, 0, 0);
-  --md-sys-color-outline-variant: rgb(0, 0, 0);
+  --md-sys-color-outline-variant: rgb(214, 211, 209);
   --md-sys-color-shadow: rgb(0, 0, 0);
   --md-sys-color-scrim: rgb(0, 0, 0);
   /* Fixed accent roles */
@@ -140,9 +144,9 @@
   --md-sys-color-surface-tint: rgb(255, 144, 232);
   --md-sys-color-inverse-surface: rgb(255, 255, 255);
   --md-sys-color-inverse-on-surface: rgb(0, 0, 0);
-  /* White borders carry the identity in dark */
+  /* White borders carry the identity in dark; hairlines stay subtle stone */
   --md-sys-color-outline: rgb(255, 255, 255);
-  --md-sys-color-outline-variant: rgb(255, 255, 255);
+  --md-sys-color-outline-variant: rgb(68, 64, 60);
   --md-sys-color-shadow: rgb(0, 0, 0);
   --md-sys-color-scrim: rgb(0, 0, 0);
   --md-sys-color-primary-fixed: rgb(255, 209, 244);
@@ -179,6 +183,11 @@
 [data-design='gumroad'] .dk-textfield--focused .dk-field__label,
 [data-design='gumroad'] .dk-nativefield--focused .dk-field__label {
   color: var(--md-sys-color-on-surface);
+}
+/* Cards keep the bold identity border (outline-variant went subtle for
+   hairlines like calendar grids and table borders). */
+[data-design='gumroad'] .dk-card.dk-card--outlined {
+  border-color: var(--md-sys-color-outline);
 }
 /* Outlined/text buttons: black ink (pink is for fills, not text). */
 [data-design='gumroad'] .dk-button.dk-button--outlined,
