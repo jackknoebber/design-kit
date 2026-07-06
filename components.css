@@ -1,0 +1,295 @@
+/* ===========================================================================
+   Component base styles (M3 look) for the five identity components:
+   TextField, native fields, Button, Card, Dialog.
+
+   These used to live as inline styles inside the components; they moved here
+   so THEMES can restructure component anatomy with plain CSS — e.g. cupertino
+   turns the M3 underline field into an enclosed iOS-style field, gumroad puts
+   black borders on everything. Values below transcribe the original inline
+   styles exactly; the M3 design must render pixel-identical.
+
+   Selector conventions:
+   - block: .dk-<component>, modifiers: .dk-<component>--<state|variant>
+   - variant color rules use DOUBLE class (.dk-button.dk-button--filled) so
+     they out-rank app-level `button:hover`-style element rules.
+   - Theme overrides live in themes/*.css under [data-design='…'] and win by
+     specificity + load order.
+   =========================================================================== */
+
+/* --- Field system (shared by TextField + native fields) ------------------ */
+
+.dk-textfield {
+  display: inline-flex;
+  flex-direction: column;
+  min-width: 210px;
+}
+.dk-textfield--disabled {
+  opacity: 0.38;
+}
+
+.dk-field__shell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 56px;
+  padding: 0 16px;
+  box-sizing: border-box;
+  transition: border-color 80ms, box-shadow 80ms;
+}
+/* Filled: tonal container + bottom indicator. The active indicator thickens
+   via box-shadow (not border-width) so text never shifts on focus. */
+.dk-textfield--filled .dk-field__shell {
+  background: var(--md-sys-color-surface-container-highest);
+  border: none;
+  border-bottom: 1px solid var(--md-sys-color-on-surface-variant);
+  border-radius: var(--md-sys-shape-corner-extra-small) var(--md-sys-shape-corner-extra-small) 0 0;
+}
+.dk-textfield--filled.dk-textfield--focused .dk-field__shell {
+  border-bottom-color: var(--md-sys-color-primary);
+  box-shadow: inset 0 -2px 0 0 var(--md-sys-color-primary);
+}
+.dk-textfield--filled.dk-textfield--error .dk-field__shell {
+  border-bottom-color: var(--md-sys-color-error);
+}
+.dk-textfield--filled.dk-textfield--focused.dk-textfield--error .dk-field__shell {
+  box-shadow: inset 0 -2px 0 0 var(--md-sys-color-error);
+}
+/* Outlined */
+.dk-textfield--outlined .dk-field__shell {
+  background: transparent;
+  border: var(--dk-border-width) solid var(--md-sys-color-outline);
+  border-radius: var(--md-sys-shape-corner-extra-small);
+}
+.dk-textfield--outlined.dk-textfield--focused .dk-field__shell {
+  border-color: var(--md-sys-color-primary);
+  box-shadow: inset 0 0 0 1px var(--md-sys-color-primary);
+}
+.dk-textfield--outlined.dk-textfield--error .dk-field__shell {
+  border-color: var(--md-sys-color-error);
+}
+.dk-textfield--outlined.dk-textfield--focused.dk-textfield--error .dk-field__shell {
+  box-shadow: inset 0 0 0 1px var(--md-sys-color-error);
+}
+
+.dk-field__inner {
+  position: relative;
+  flex: 1;
+  height: 100%;
+}
+.dk-field__label {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--md-ref-typeface-plain);
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--md-sys-color-on-surface-variant);
+  pointer-events: none;
+  transition: top 120ms, font-size 120ms, color 80ms;
+}
+.dk-textfield--floated .dk-field__label {
+  top: 8px;
+  transform: none;
+  font-size: 12px;
+  line-height: 16px;
+}
+.dk-textfield--outlined.dk-textfield--floated .dk-field__label {
+  top: -8px;
+  background: var(--md-sys-color-surface);
+  padding: 0 4px;
+  margin: 0 -4px;
+}
+.dk-textfield--focused .dk-field__label,
+.dk-nativefield--focused .dk-field__label {
+  color: var(--md-sys-color-primary);
+}
+.dk-textfield--error .dk-field__label {
+  color: var(--md-sys-color-error);
+}
+
+.dk-field__input {
+  position: absolute;
+  left: 0;
+  bottom: 50%;
+  transform: translateY(50%);
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--md-sys-color-on-surface);
+  font: 400 16px/24px var(--md-ref-typeface-plain);
+  padding: 0;
+  min-width: 0;
+}
+.dk-textfield--filled .dk-field__input {
+  bottom: 8px;
+  transform: none;
+}
+
+.dk-field__supporting {
+  font: 400 12px/16px var(--md-ref-typeface-plain);
+  color: var(--md-sys-color-on-surface-variant);
+  padding: 4px 16px 0;
+}
+.dk-textfield--error .dk-field__supporting {
+  color: var(--md-sys-color-error);
+}
+
+/* Native fields (select / date / textarea in the filled shell) */
+.dk-nativefield {
+  position: relative;
+  height: 56px;
+  box-sizing: border-box;
+  min-width: 160px;
+  background: var(--md-sys-color-surface-container-highest);
+  border-bottom: 1px solid var(--md-sys-color-on-surface-variant);
+  border-radius: var(--md-sys-shape-corner-extra-small) var(--md-sys-shape-corner-extra-small) 0 0;
+  transition: border-color 80ms, box-shadow 80ms;
+}
+.dk-nativefield--focused {
+  border-bottom-color: var(--md-sys-color-primary);
+  box-shadow: inset 0 -2px 0 0 var(--md-sys-color-primary);
+}
+.dk-nativefield .dk-field__label {
+  top: 8px;
+  left: 16px;
+  transform: none;
+  font-size: 12px;
+  line-height: 16px;
+}
+.dk-field__control {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: transparent;
+  font: 400 16px/24px var(--md-ref-typeface-plain);
+  line-height: 24px;
+  color: var(--md-sys-color-on-surface);
+  outline: none;
+  /* 23px top = exactly where TextField's input sits (padding box 55 − 8 − 24). */
+  padding: 23px 16px 0;
+  box-sizing: border-box;
+  /* Native selects/dates vertically center their value in the box (esp. iOS),
+     ignoring padding — appearance:none makes the padding authoritative. */
+  -webkit-appearance: none;
+  appearance: none;
+  min-width: 0;
+}
+select.dk-field__control {
+  cursor: pointer;
+  padding-right: 36px;
+}
+.dk-field__arrow {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  margin-top: -6px;
+  border: solid var(--md-sys-color-on-surface-variant);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  pointer-events: none;
+}
+
+/* --- Button ---------------------------------------------------------------- */
+
+.dk-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 48px;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  outline: none;
+  font-family: var(--md-ref-typeface-plain);
+  font-weight: 500;
+  letter-spacing: 0.1px;
+  cursor: pointer;
+  white-space: nowrap;
+  user-select: none;
+  transition: box-shadow 120ms, background 120ms;
+}
+/* Sizes (M3 expressive: xs 32 / s 40 / m 56 / l 96 / xl 136) */
+.dk-button--xs { height: 32px; padding: 0 12px; gap: 8px; font-size: 14px; line-height: 20px; }
+.dk-button--s  { height: 40px; padding: 0 16px; gap: 8px; font-size: 14px; line-height: 20px; }
+.dk-button--m  { height: 56px; padding: 0 24px; gap: 8px; font-size: 16px; line-height: 24px; }
+.dk-button--l  { height: 96px; padding: 0 48px; gap: 12px; font-size: 24px; line-height: 32px; }
+.dk-button--xl { height: 136px; padding: 0 64px; gap: 16px; font-size: 32px; line-height: 40px; }
+/* Text buttons: tighter horizontal padding */
+.dk-button--text.dk-button--xs, .dk-button--text.dk-button--s, .dk-button--text.dk-button--m { padding: 0 12px; }
+.dk-button--text.dk-button--l  { padding: 0 36px; }
+.dk-button--text.dk-button--xl { padding: 0 52px; }
+/* Shape */
+.dk-button--round { border-radius: var(--md-sys-shape-corner-full); }
+.dk-button--square.dk-button--xs, .dk-button--square.dk-button--s { border-radius: var(--md-sys-shape-corner-medium); }
+.dk-button--square.dk-button--m { border-radius: var(--md-sys-shape-corner-large); }
+.dk-button--square.dk-button--l, .dk-button--square.dk-button--xl { border-radius: var(--md-sys-shape-corner-extra-large); }
+/* Variants (double class: out-rank app-level element rules like button:hover) */
+.dk-button.dk-button--filled   { background: var(--md-sys-color-primary); color: var(--md-sys-color-on-primary); }
+.dk-button.dk-button--tonal    { background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); }
+.dk-button.dk-button--elevated { background: var(--md-sys-color-surface-container-low); color: var(--md-sys-color-primary); box-shadow: var(--md-sys-elevation-level1); }
+.dk-button.dk-button--outlined { background: transparent; color: var(--md-sys-color-primary); border: var(--dk-border-width) solid var(--md-sys-color-outline-variant); }
+.dk-button.dk-button--text     { background: transparent; color: var(--md-sys-color-primary); }
+.dk-button:disabled { opacity: 0.38; cursor: default; }
+
+/* --- Card ------------------------------------------------------------------ */
+
+.dk-card {
+  border-radius: var(--md-sys-shape-corner-medium);
+  color: var(--md-sys-color-on-surface);
+  overflow: hidden;
+  border: none;
+  box-shadow: none;
+}
+.dk-card.dk-card--elevated { background: var(--md-sys-color-surface-container-low); box-shadow: var(--md-sys-elevation-level1); }
+.dk-card.dk-card--filled   { background: var(--md-sys-color-surface-container-highest); }
+.dk-card.dk-card--outlined { background: var(--md-sys-color-surface); border: var(--dk-border-width) solid var(--md-sys-color-outline-variant); }
+.dk-card--interactive { cursor: pointer; }
+
+/* --- Dialog ----------------------------------------------------------------- */
+
+.dk-dialog__scrim {
+  position: fixed;
+  inset: 0;
+  background: color-mix(in srgb, var(--md-sys-color-scrim) 32%, transparent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 24px;
+}
+.dk-dialog {
+  width: min(560px, 100%);
+  max-height: 90vh;
+  overflow: auto;
+  background: var(--md-sys-color-surface-container-high);
+  color: var(--md-sys-color-on-surface);
+  border-radius: var(--md-sys-shape-corner-extra-large);
+  box-shadow: var(--md-sys-elevation-level3);
+  padding: 24px;
+  text-align: left;
+}
+.dk-dialog--centered { text-align: center; }
+.dk-dialog__icon { display: flex; justify-content: center; margin-bottom: 16px; }
+.dk-dialog__headline {
+  margin: 0 0 16px;
+  font: 400 24px/32px var(--md-ref-typeface-plain);
+  color: var(--md-sys-color-on-surface);
+}
+.dk-dialog__body {
+  font: 400 14px/20px var(--md-ref-typeface-plain);
+  letter-spacing: 0.25px;
+  color: var(--md-sys-color-on-surface-variant);
+}
+.dk-dialog__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 24px;
+}

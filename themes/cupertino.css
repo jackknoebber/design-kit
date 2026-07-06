@@ -96,6 +96,31 @@
   --md-sys-color-on-tertiary-fixed-variant: rgb(88, 62, 91);
 }
 
+/* ---- Structural: enclosed iOS-style fields (no M3 underline) ------------- */
+/* The M3 field is a tonal container with a bottom indicator; iOS encloses the
+   field in a hairline rounded rect and marks focus with a tinted ring. */
+[data-design='cupertino'] .dk-textfield--filled .dk-field__shell,
+[data-design='cupertino'] .dk-nativefield {
+  background: var(--md-sys-color-surface);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--md-sys-shape-corner-small);
+  box-shadow: none;
+}
+[data-design='cupertino'] .dk-textfield--filled.dk-textfield--focused .dk-field__shell,
+[data-design='cupertino'] .dk-nativefield--focused {
+  border-color: var(--md-sys-color-primary);
+  box-shadow: inset 0 0 0 1px var(--md-sys-color-primary);
+}
+[data-design='cupertino'] .dk-textfield--filled.dk-textfield--error .dk-field__shell {
+  border-color: var(--md-sys-color-error);
+}
+/* Dialogs: iOS uses tighter, very-rounded sheets on the elevated surface. */
+[data-design='cupertino'] .dk-dialog {
+  border-radius: var(--md-sys-shape-corner-large);
+  background: var(--md-sys-color-surface);
+  border: 1px solid var(--md-sys-color-outline-variant);
+}
+
 /* ---- Dark ---- */
 :root[data-design='cupertino'][data-theme='dark'],
 .dark[data-design='cupertino'] {

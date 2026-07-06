@@ -152,3 +152,38 @@
   --md-sys-color-on-tertiary-fixed: rgb(0, 0, 0);
   --md-sys-color-on-tertiary-fixed-variant: rgb(0, 0, 0);
 }
+
+/* ---- Structural: bordered white fields, black-ink buttons, framed dialogs -- */
+[data-design='gumroad'] .dk-textfield--filled .dk-field__shell,
+[data-design='gumroad'] .dk-nativefield {
+  background: var(--md-sys-color-surface-container-lowest);
+  border: var(--dk-border-width) solid var(--md-sys-color-outline);
+  border-radius: var(--md-sys-shape-corner-small);
+  box-shadow: none;
+}
+/* Focus: a hard offset shadow instead of a tinted ring — the gumroad move. */
+[data-design='gumroad'] .dk-textfield--filled.dk-textfield--focused .dk-field__shell,
+[data-design='gumroad'] .dk-nativefield--focused {
+  box-shadow: 2px 2px 0 0 var(--md-sys-color-shadow);
+}
+[data-design='gumroad'] .dk-textfield--filled.dk-textfield--error .dk-field__shell {
+  border-color: var(--md-sys-color-error);
+}
+/* Field labels read black, not tinted, when focused. */
+[data-design='gumroad'] .dk-textfield--focused .dk-field__label,
+[data-design='gumroad'] .dk-nativefield--focused .dk-field__label {
+  color: var(--md-sys-color-on-surface);
+}
+/* Outlined/text buttons: black ink (pink is for fills, not text). */
+[data-design='gumroad'] .dk-button.dk-button--outlined,
+[data-design='gumroad'] .dk-button.dk-button--text {
+  color: var(--md-sys-color-on-surface);
+}
+[data-design='gumroad'] .dk-button.dk-button--outlined {
+  border-color: var(--md-sys-color-outline);
+}
+/* Dialogs: framed in black with the hard shadow (elevation override above). */
+[data-design='gumroad'] .dk-dialog {
+  border: var(--dk-border-width) solid var(--md-sys-color-outline);
+  border-radius: var(--md-sys-shape-corner-extra-large);
+}
