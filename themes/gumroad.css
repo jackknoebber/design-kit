@@ -1,3 +1,8 @@
+/* Gumroad's real typeface is Mabry Pro (licensed, not loadable here) — load
+   Archivo as the free stand-in so the design actually gets its own voice
+   instead of falling back to Inter. (@import must precede all rules.) */
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap');
+
 /* ===========================================================================
    gumroad — brutalist-playful design system (SEED DRAFT).
    Hand-authored from the known Gumroad palette: pink #FF90E8 on white cards,
