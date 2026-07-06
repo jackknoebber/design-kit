@@ -14,7 +14,7 @@ const FILLS = {
   filled:   { bg: 'var(--md-sys-color-primary)', fg: 'var(--md-sys-color-on-primary)', border: 'none', shadow: 'none' },
   tonal:    { bg: 'var(--md-sys-color-secondary-container)', fg: 'var(--md-sys-color-on-secondary-container)', border: 'none', shadow: 'none' },
   elevated: { bg: 'var(--md-sys-color-surface-container-low)', fg: 'var(--md-sys-color-primary)', border: 'none', shadow: 'var(--md-sys-elevation-level1)' },
-  outlined: { bg: 'transparent', fg: 'var(--md-sys-color-primary)', border: '1px solid var(--md-sys-color-outline-variant)', shadow: 'none' },
+  outlined: { bg: 'transparent', fg: 'var(--md-sys-color-primary)', border: 'var(--dk-border-width) solid var(--md-sys-color-outline-variant)', shadow: 'none' },
   text:     { bg: 'transparent', fg: 'var(--md-sys-color-primary)', border: 'none', shadow: 'none' },
 };
 

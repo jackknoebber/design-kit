@@ -44,7 +44,7 @@ export function TextField({
           height: 56,
           padding: '0 16px',
           background: filled ? 'var(--md-sys-color-surface-container-highest)' : 'transparent',
-          border: filled ? 'none' : `1px solid ${error ? 'var(--md-sys-color-error)' : focused ? 'var(--md-sys-color-primary)' : 'var(--md-sys-color-outline)'}`,
+          border: filled ? 'none' : `var(--dk-border-width) solid ${error ? 'var(--md-sys-color-error)' : focused ? 'var(--md-sys-color-primary)' : 'var(--md-sys-color-outline)'}`,
           // Keep the active-indicator width change off the box model so the text
           // doesn't shift on focus: constant 1px border, thicken via box-shadow.
           borderBottom: filled ? `1px solid ${accent}` : undefined,

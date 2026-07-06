@@ -1,3 +1,8 @@
+/* Cupertino's icon set: Framework7 Icons (MIT, SF-Symbols-style ligature font).
+   The Icon component switches to it via the icon-set registry when
+   data-design="cupertino". (@import must precede all rules.) */
+@import url('https://cdn.jsdelivr.net/npm/framework7-icons@5.0.5/css/framework7-icons.css');
+
 /* ===========================================================================
    cupertino — an iOS-flavored design system implementing the token contract.
    Vivid system-blue accents on NEUTRAL gray surfaces (no seed tint), SF-style

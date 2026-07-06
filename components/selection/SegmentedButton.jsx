@@ -22,7 +22,7 @@ export function SegmentedButton({ segments = [], value = 0, multiple = false, on
   };
 
   return (
-    <div style={{ display: 'inline-flex', borderRadius: 'var(--md-sys-shape-corner-full)', overflow: 'hidden', border: '1px solid var(--md-sys-color-outline)', ...style }} {...rest}>
+    <div style={{ display: 'inline-flex', borderRadius: 'var(--md-sys-shape-corner-full)', overflow: 'hidden', border: 'var(--dk-border-width) solid var(--md-sys-color-outline)', ...style }} {...rest}>
       {segments.map((s, i) => {
         const active = selected.includes(i);
         return (
@@ -34,7 +34,7 @@ export function SegmentedButton({ segments = [], value = 0, multiple = false, on
             style={{
               display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: 8,
               height: 40, padding: '0 16px', minWidth: 48,
-              border: 'none', borderLeft: i === 0 ? 'none' : '1px solid var(--md-sys-color-outline)',
+              border: 'none', borderLeft: i === 0 ? 'none' : 'var(--dk-border-width) solid var(--md-sys-color-outline)',
               background: active ? 'var(--md-sys-color-secondary-container)' : 'transparent',
               color: active ? 'var(--md-sys-color-on-secondary-container)' : 'var(--md-sys-color-on-surface)',
               font: "500 14px/20px var(--md-ref-typeface-plain)", letterSpacing: '.1px', cursor: 'pointer',

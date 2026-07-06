@@ -13,3 +13,9 @@
   --md-sys-shape-corner-extra-extra-large: 48px;
   --md-sys-shape-corner-full: 9999px;
 }
+
+/* Expression: component border weight. Designs override for identity — e.g.
+   a brutalist system sets 2px; iOS hairlines keep 1px. Dividers stay 1px. */
+:root {
+  --dk-border-width: 1px;
+}

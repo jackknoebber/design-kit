@@ -72,7 +72,23 @@ overriding the scale (e.g. cupertino uses squarer-but-larger iOS-style values).
 
 Box-shadow values. Ambient elements are flat (level 0 / outlines / tonal
 difference); real shadows are reserved for floating surfaces (dialog, menu,
-FAB, snackbar).
+FAB, snackbar). Themes may redefine the levels to change shadow CHARACTER —
+e.g. hard offset shadows (`4px 4px 0 #000`) for a brutalist design.
+
+## 6. Expression — `--dk-border-width`
+
+Component border weight (outlined cards/buttons/chips/fields). Default 1px;
+a design can thicken it for identity (e.g. 2px brutalist borders). Dividers
+stay hairline regardless.
+
+## 7. Icons — per-design icon sets
+
+`Icon` takes SEMANTIC names (the Material Symbols name: "add", "settings",
+"delete"…). The default design renders Material Symbols; another design may
+register its own set in `components/core/icon-sets.js` (a name→glyph map plus
+the icon font's CSS class; load the font in the theme's CSS file). Unmapped
+names fall back to Material Symbols. cupertino ships Framework7 Icons (MIT,
+SF-style). When adding icons to components, always use the Material name.
 
 ## Adding a new theme
 

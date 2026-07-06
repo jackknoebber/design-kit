@@ -28,7 +28,7 @@ export function Tooltip({ label, rich = false, subhead, children, body, actions,
           position: 'absolute', ...pos, zIndex: 1000, width: 280, textAlign: 'left',
           background: 'var(--md-sys-color-surface-container)',
           color: 'var(--md-sys-color-on-surface-variant)',
-          border: '1px solid var(--md-sys-color-outline-variant)',
+          border: 'var(--dk-border-width) solid var(--md-sys-color-outline-variant)',
           borderRadius: 'var(--md-sys-shape-corner-medium)',
           boxShadow: 'var(--md-sys-elevation-level2)', padding: 12,
         }}>

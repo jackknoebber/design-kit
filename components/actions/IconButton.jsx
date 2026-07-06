@@ -23,7 +23,7 @@ function colorsFor(variant, selected) {
     case 'outlined':
       return selected
         ? { bg: 'var(--md-sys-color-inverse-surface)', fg: 'var(--md-sys-color-inverse-on-surface)', border: 'none' }
-        : { bg: 'transparent', fg: 'var(--md-sys-color-on-surface-variant)', border: '1px solid var(--md-sys-color-outline-variant)' };
+        : { bg: 'transparent', fg: 'var(--md-sys-color-on-surface-variant)', border: 'var(--dk-border-width) solid var(--md-sys-color-outline-variant)' };
     default: // standard
       return { bg: 'transparent', fg: selected ? 'var(--md-sys-color-primary)' : 'var(--md-sys-color-on-surface-variant)' };
   }

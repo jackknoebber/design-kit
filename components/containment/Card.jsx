@@ -4,7 +4,7 @@ import { useStyleOnce, STATE_LAYER_BASE } from '../core/stateLayer.js';
 const VARIANTS = {
   elevated: { bg: 'var(--md-sys-color-surface-container-low)', border: 'none', shadow: 'var(--md-sys-elevation-level1)' },
   filled:   { bg: 'var(--md-sys-color-surface-container-highest)', border: 'none', shadow: 'none' },
-  outlined: { bg: 'var(--md-sys-color-surface)', border: '1px solid var(--md-sys-color-outline-variant)', shadow: 'none' },
+  outlined: { bg: 'var(--md-sys-color-surface)', border: 'var(--dk-border-width) solid var(--md-sys-color-outline-variant)', shadow: 'none' },
 };
 
 /**

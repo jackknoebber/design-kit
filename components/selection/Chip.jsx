@@ -27,7 +27,7 @@ export function Chip({
     ? 'var(--md-sys-color-surface-container-low)'
     : 'transparent';
   const fg = isSelected ? 'var(--md-sys-color-on-secondary-container)' : 'var(--md-sys-color-on-surface-variant)';
-  const border = isSelected || elevated ? 'none' : '1px solid var(--md-sys-color-outline-variant)';
+  const border = isSelected || elevated ? 'none' : 'var(--dk-border-width) solid var(--md-sys-color-outline-variant)';
 
   return (
     <button

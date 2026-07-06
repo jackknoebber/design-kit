@@ -1,9 +1,13 @@
 import React from 'react';
+import { useDesign } from './useDesign.js';
+import { resolveIcon } from './icon-sets.js';
 
 /**
- * Material 3 icon. Renders a glyph from the Material Symbols variable font —
- * the canonical M3 icon system (FILL, weight, grade, optical-size axes).
- * Pass any Material Symbols name (e.g. "settings", "favorite", "arrow_back").
+ * Design-aware icon. `name` is always the SEMANTIC (Material Symbols) name —
+ * e.g. "settings", "add", "delete". Under the default M3 design it renders the
+ * Material Symbols variable font (FILL/weight/grade/opsz axes); under another
+ * design (data-design on <html>) it renders that design's icon set via the
+ * registry in icon-sets.js, falling back to Material for unmapped names.
  */
 export function Icon({
   name = 'favorite',
@@ -11,26 +15,32 @@ export function Icon({
   fill = false,
   weight = 400,
   grade = 0,
-  variant = 'outlined', // 'outlined' | 'rounded'
+  variant = 'outlined', // 'outlined' | 'rounded' (Material set only)
   color,
   className = '',
   style = {},
   ...rest
 }) {
-  const cls =
+  const design = useDesign();
+  const materialCls =
     variant === 'rounded'
       ? 'material-symbols-rounded'
       : 'material-symbols-outlined';
+  const r = resolveIcon(design, name, materialCls);
   return (
     <span
-      className={`${cls} ${className}`.trim()}
+      className={`${r.className} ${className}`.trim()}
       aria-hidden="true"
       style={{
         fontSize: size,
         width: size,
         height: size,
         color,
-        fontVariationSettings: `'FILL' ${fill ? 1 : 0}, 'wght' ${weight}, 'GRAD' ${grade}, 'opsz' ${Math.max(20, Math.min(48, size))}`,
+        // Variable-font axes only apply to Material Symbols; foreign icon
+        // fonts ignore them, but don't send axes at all to keep them clean.
+        fontVariationSettings: r.foreign
+          ? undefined
+          : `'FILL' ${fill ? 1 : 0}, 'wght' ${weight}, 'GRAD' ${grade}, 'opsz' ${Math.max(20, Math.min(48, size))}`,
         display: 'inline-flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -40,7 +50,7 @@ export function Icon({
       }}
       {...rest}
     >
-      {name}
+      {r.glyph}
     </span>
   );
 }
