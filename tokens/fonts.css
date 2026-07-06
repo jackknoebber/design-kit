@@ -1,0 +1,19 @@
+/* Material 3 webfonts.
+   The M3 Font theme Variables set both Brand and Plain typefaces to Roboto;
+   per project direction the sans role is mapped to **Inter** here (Roboto Mono
+   is kept for the monospace / code-label role). Google Sans — used in the kit's
+   marketing/example screens — is a proprietary Google typeface and is NOT
+   redistributable, so it is not used. */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Roboto+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap');
+
+:root {
+  --md-ref-typeface-brand: 'Inter', system-ui, sans-serif;
+  --md-ref-typeface-plain: 'Inter', system-ui, sans-serif;
+  --md-ref-typeface-mono: 'Roboto Mono', ui-monospace, monospace;
+
+  --md-ref-typeface-weight-regular: 400;
+  --md-ref-typeface-weight-medium: 500;
+  --md-ref-typeface-weight-bold: 600;
+}

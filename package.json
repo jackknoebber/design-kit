@@ -1,0 +1,17 @@
+{
+  "name": "design-kit",
+  "version": "1.0.0",
+  "description": "Jack's personal design system: universal token contract + themes (Material 3 baseline, teal, cupertino) + React components.",
+  "type": "module",
+  "license": "UNLICENSED",
+  "repository": "github:jackknoebber/design-kit",
+  "peerDependencies": {
+    "react": ">=18"
+  },
+  "devDependencies": {
+    "@material/material-color-utilities": "^0.2.7"
+  },
+  "scripts": {
+    "gen-accent": "node scripts/gen-accent.mjs"
+  }
+}

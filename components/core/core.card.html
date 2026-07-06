@@ -1,0 +1,46 @@
+<!-- @dsCard group="Components" viewport="700x180" name="Icon (Material Symbols)" subtitle="Variable icon font — fill, weight & optical-size axes" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<script crossorigin src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm"></script>
+<script crossorigin src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>
+  body { margin:0; padding:24px; background: var(--md-sys-color-surface); color: var(--md-sys-color-on-surface); }
+  .row { display:flex; gap:20px; align-items:center; flex-wrap:wrap; margin-bottom:16px; }
+  .lbl { font: 500 11px/16px 'Inter'; letter-spacing:.5px; text-transform:uppercase; color: var(--md-sys-color-on-surface-variant); margin:0 0 10px; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+  const { Icon } = window.Material3DesignSystem_7bcfcf;
+  const names = ['home','search','favorite','settings','notifications','delete','edit','star','schedule','cloud_done'];
+  function Demo() {
+    return (
+      <div>
+        <p className="lbl">Outlined · 24px</p>
+        <div className="row" style={{color:'var(--md-sys-color-on-surface-variant)'}}>
+          {names.map(n => <Icon key={n} name={n} size={28} />)}
+        </div>
+        <p className="lbl">Filled · primary</p>
+        <div className="row" style={{color:'var(--md-sys-color-primary)'}}>
+          {names.slice(0,6).map(n => <Icon key={n} name={n} size={28} fill />)}
+        </div>
+        <p className="lbl">Sizes & weight</p>
+        <div className="row" style={{color:'var(--md-sys-color-on-surface)'}}>
+          <Icon name="favorite" size={20} weight={300} />
+          <Icon name="favorite" size={28} weight={400} />
+          <Icon name="favorite" size={40} weight={600} fill />
+          <Icon name="favorite" size={48} weight={700} fill />
+        </div>
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById('root')).render(<Demo />);
+</script>
+</body>
+</html>

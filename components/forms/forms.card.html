@@ -1,0 +1,57 @@
+<!-- @dsCard group="Components" viewport="700x360" name="Selection & input controls" subtitle="Checkbox, radio, switch, text field, slider" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<script crossorigin src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm"></script>
+<script crossorigin src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>
+  body { margin: 0; padding: 24px; background: var(--md-sys-color-surface); }
+  .grid { display: flex; gap: 40px; flex-wrap: wrap; }
+  .col { display: flex; flex-direction: column; gap: 16px; }
+  .lbl { font: 500 11px/16px 'Inter', sans-serif; letter-spacing: .5px; text-transform: uppercase; color: var(--md-sys-color-on-surface-variant); margin: 0 0 4px; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+  const { Checkbox, Radio, Switch, TextField, Slider } = window.Material3DesignSystem_7bcfcf;
+  function Demo() {
+    const [c1, setC1] = React.useState(true);
+    const [sw, setSw] = React.useState(true);
+    const [r, setR] = React.useState('a');
+    const [sl, setSl] = React.useState(60);
+    return (
+      <div className="grid">
+        <div className="col">
+          <p className="lbl">Checkbox</p>
+          <Checkbox checked={c1} onChange={setC1} label="Checked" />
+          <Checkbox checked={false} label="Unchecked" />
+          <Checkbox indeterminate label="Indeterminate" />
+          <p className="lbl" style={{marginTop:8}}>Radio</p>
+          <Radio name="g" checked={r==='a'} value="a" onChange={setR} label="Option A" />
+          <Radio name="g" checked={r==='b'} value="b" onChange={setR} label="Option B" />
+        </div>
+        <div className="col">
+          <p className="lbl">Switch</p>
+          <Switch checked={sw} onChange={setSw} label="Wi-Fi" />
+          <Switch checked={false} label="Bluetooth" />
+          <p className="lbl" style={{marginTop:8}}>Slider</p>
+          <Slider value={sl} onChange={setSl} showValue style={{width:180}} />
+        </div>
+        <div className="col">
+          <p className="lbl">Text fields</p>
+          <TextField variant="outlined" label="Email" leadingIcon="mail" defaultValue="" />
+          <TextField variant="filled" label="Password" trailingIcon="visibility" />
+          <TextField variant="outlined" label="Amount" error supportingText="Required" defaultValue="-5" />
+        </div>
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById('root')).render(<Demo />);
+</script>
+</body>
+</html>

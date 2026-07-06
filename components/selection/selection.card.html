@@ -1,0 +1,49 @@
+<!-- @dsCard group="Components" viewport="700x220" name="Chips & segmented buttons" subtitle="Assist / filter / input chips, segmented button" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../../styles.css" />
+<script crossorigin src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm"></script>
+<script crossorigin src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>
+  body { margin: 0; padding: 24px; background: var(--md-sys-color-surface); }
+  .row { display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:16px; }
+  .lbl { font: 500 11px/16px 'Inter'; letter-spacing:.5px; text-transform:uppercase; color: var(--md-sys-color-on-surface-variant); margin:0 0 8px; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+  const { Chip, SegmentedButton } = window.Material3DesignSystem_7bcfcf;
+  function Demo() {
+    const [sel, setSel] = React.useState([0,2]);
+    const [seg, setSeg] = React.useState(0);
+    const [multi, setMulti] = React.useState([1]);
+    return (
+      <div>
+        <p className="lbl">Chips</p>
+        <div className="row">
+          <Chip variant="assist" icon="event" label="Assist" />
+          <Chip variant="filter" label="Filter" selected={sel.includes(0)} onClick={()=>setSel(s=>s.includes(0)?s.filter(x=>x!==0):[...s,0])} />
+          <Chip variant="filter" label="Selected" selected onClick={()=>{}} />
+          <Chip variant="input" label="Input" onRemove={()=>{}} />
+          <Chip variant="suggestion" label="Suggestion" elevated />
+        </div>
+        <p className="lbl">Segmented button (single)</p>
+        <div className="row">
+          <SegmentedButton segments={[{label:'Day',icon:'today'},{label:'Week'},{label:'Month'}]} value={seg} onChange={setSeg} />
+        </div>
+        <p className="lbl">Segmented button (multi-select)</p>
+        <div className="row">
+          <SegmentedButton multiple segments={[{icon:'format_bold'},{icon:'format_italic'},{icon:'format_underlined'}]} value={multi} onChange={setMulti} />
+        </div>
+      </div>
+    );
+  }
+  ReactDOM.createRoot(document.getElementById('root')).render(<Demo />);
+</script>
+</body>
+</html>

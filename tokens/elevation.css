@@ -1,0 +1,55 @@
+/* Material 3 — Elevation, state-layer opacity, motion & spacing tokens.
+   Elevation in M3 is a 6-step system (level 0–5) expressed as layered shadows
+   (key + ambient). State layers convey interaction (hover 8%, focus/press 10–12%). */
+
+:root {
+  /* Elevation shadows (key + ambient umbra), M3 levels 0–5 */
+  --md-sys-elevation-level0: none;
+  --md-sys-elevation-level1:
+    0px 1px 2px 0px rgba(0, 0, 0, 0.30),
+    0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+  --md-sys-elevation-level2:
+    0px 1px 2px 0px rgba(0, 0, 0, 0.30),
+    0px 2px 6px 2px rgba(0, 0, 0, 0.15);
+  --md-sys-elevation-level3:
+    0px 1px 3px 0px rgba(0, 0, 0, 0.30),
+    0px 4px 8px 3px rgba(0, 0, 0, 0.15);
+  --md-sys-elevation-level4:
+    0px 2px 3px 0px rgba(0, 0, 0, 0.30),
+    0px 6px 10px 4px rgba(0, 0, 0, 0.15);
+  --md-sys-elevation-level5:
+    0px 4px 4px 0px rgba(0, 0, 0, 0.30),
+    0px 8px 12px 6px rgba(0, 0, 0, 0.15);
+
+  /* State-layer opacities */
+  --md-sys-state-hover-opacity: 0.08; /* @kind other */
+  --md-sys-state-focus-opacity: 0.10; /* @kind other */
+  --md-sys-state-pressed-opacity: 0.10; /* @kind other */
+  --md-sys-state-dragged-opacity: 0.16; /* @kind other */
+  --md-sys-state-disabled-content-opacity: 0.38; /* @kind other */
+  --md-sys-state-disabled-container-opacity: 0.12; /* @kind other */
+
+  /* Motion — easing & duration (M3 expressive emphasized set) */
+  --md-sys-motion-easing-standard: cubic-bezier(0.2, 0, 0, 1); /* @kind other */
+  --md-sys-motion-easing-standard-accelerate: cubic-bezier(0.3, 0, 1, 1); /* @kind other */
+  --md-sys-motion-easing-standard-decelerate: cubic-bezier(0, 0, 0, 1); /* @kind other */
+  --md-sys-motion-easing-emphasized: cubic-bezier(0.2, 0, 0, 1); /* @kind other */
+  --md-sys-motion-easing-emphasized-decelerate: cubic-bezier(0.05, 0.7, 0.1, 1); /* @kind other */
+  --md-sys-motion-easing-emphasized-accelerate: cubic-bezier(0.3, 0, 0.8, 0.15); /* @kind other */
+  --md-sys-motion-duration-short2: 100ms; /* @kind other */
+  --md-sys-motion-duration-short4: 200ms; /* @kind other */
+  --md-sys-motion-duration-medium2: 300ms; /* @kind other */
+  --md-sys-motion-duration-long2: 500ms; /* @kind other */
+
+  /* Spacing scale (M3 4dp grid) */
+  --md-sys-spacing-0: 0px;
+  --md-sys-spacing-1: 4px;
+  --md-sys-spacing-2: 8px;
+  --md-sys-spacing-3: 12px;
+  --md-sys-spacing-4: 16px;
+  --md-sys-spacing-5: 20px;
+  --md-sys-spacing-6: 24px;
+  --md-sys-spacing-8: 32px;
+  --md-sys-spacing-10: 40px;
+  --md-sys-spacing-12: 48px;
+}

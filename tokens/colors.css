@@ -1,0 +1,269 @@
+/* Material 3 — System color roles (Baseline scheme, seed #6750A4).
+   Light values extracted from the Figma M3 Variables collection (default mode).
+   Dark values are the canonical M3 Baseline dark scheme.
+   Switch theme with <html data-theme="dark"> or class .dark on any container.
+   The kit also ships 15 additional tonal themes (pink, rose, red, orange,
+   yellow, chartreuse, green, teal, cyan, blue, indigo, purple, monochrome) +
+   contrast modes in the raw Figma export at figstage/fig-tokens.css (reference,
+   not imported here — its --schemes-* namespace is separate from --md-sys-*). */
+
+:root,
+:root[data-theme="light"],
+.light {
+  /* Primary */
+  --md-sys-color-primary: rgb(103, 80, 164);
+  --md-sys-color-on-primary: rgb(255, 255, 255);
+  --md-sys-color-primary-container: rgb(234, 221, 255);
+  --md-sys-color-on-primary-container: rgb(79, 55, 138);
+  --md-sys-color-inverse-primary: rgb(208, 188, 255);
+
+  /* Secondary */
+  --md-sys-color-secondary: rgb(98, 91, 113);
+  --md-sys-color-on-secondary: rgb(255, 255, 255);
+  --md-sys-color-secondary-container: rgb(232, 222, 248);
+  --md-sys-color-on-secondary-container: rgb(74, 68, 89);
+
+  /* Tertiary */
+  --md-sys-color-tertiary: rgb(125, 82, 96);
+  --md-sys-color-on-tertiary: rgb(255, 255, 255);
+  --md-sys-color-tertiary-container: rgb(255, 216, 228);
+  --md-sys-color-on-tertiary-container: rgb(99, 59, 72);
+
+  /* Error */
+  --md-sys-color-error: rgb(179, 38, 30);
+  --md-sys-color-on-error: rgb(255, 255, 255);
+  --md-sys-color-error-container: rgb(249, 222, 220);
+  --md-sys-color-on-error-container: rgb(133, 34, 33);
+
+  /* Surfaces */
+  --md-sys-color-background: rgb(254, 247, 255);
+  --md-sys-color-on-background: rgb(29, 27, 32);
+  --md-sys-color-surface: rgb(254, 247, 255);
+  --md-sys-color-on-surface: rgb(29, 27, 32);
+  --md-sys-color-surface-variant: rgb(231, 224, 236);
+  --md-sys-color-on-surface-variant: rgb(73, 69, 79);
+  --md-sys-color-surface-dim: rgb(222, 216, 225);
+  --md-sys-color-surface-bright: rgb(254, 247, 255);
+  --md-sys-color-surface-container-lowest: rgb(255, 255, 255);
+  --md-sys-color-surface-container-low: rgb(247, 242, 250);
+  --md-sys-color-surface-container: rgb(243, 237, 247);
+  --md-sys-color-surface-container-high: rgb(236, 230, 240);
+  --md-sys-color-surface-container-highest: rgb(230, 224, 233);
+  --md-sys-color-surface-tint: rgb(103, 80, 164);
+  --md-sys-color-inverse-surface: rgb(50, 47, 53);
+  --md-sys-color-inverse-on-surface: rgb(245, 239, 247);
+
+  /* Outline & utility */
+  --md-sys-color-outline: rgb(121, 116, 126);
+  --md-sys-color-outline-variant: rgb(202, 196, 208);
+  --md-sys-color-shadow: rgb(0, 0, 0);
+  --md-sys-color-scrim: rgb(0, 0, 0);
+
+  /* Fixed accent roles */
+  --md-sys-color-primary-fixed: rgb(234, 221, 255);
+  --md-sys-color-primary-fixed-dim: rgb(208, 188, 255);
+  --md-sys-color-on-primary-fixed: rgb(33, 0, 93);
+  --md-sys-color-on-primary-fixed-variant: rgb(79, 55, 139);
+  --md-sys-color-secondary-fixed: rgb(232, 222, 248);
+  --md-sys-color-secondary-fixed-dim: rgb(204, 194, 220);
+  --md-sys-color-on-secondary-fixed: rgb(29, 25, 43);
+  --md-sys-color-on-secondary-fixed-variant: rgb(74, 68, 88);
+  --md-sys-color-tertiary-fixed: rgb(255, 216, 228);
+  --md-sys-color-tertiary-fixed-dim: rgb(239, 184, 200);
+  --md-sys-color-on-tertiary-fixed: rgb(49, 17, 29);
+  --md-sys-color-on-tertiary-fixed-variant: rgb(99, 59, 72);
+}
+
+:root[data-theme="dark"],
+.dark {
+  /* Primary */
+  --md-sys-color-primary: rgb(208, 188, 255);
+  --md-sys-color-on-primary: rgb(56, 30, 114);
+  --md-sys-color-primary-container: rgb(79, 55, 139);
+  --md-sys-color-on-primary-container: rgb(234, 221, 255);
+  --md-sys-color-inverse-primary: rgb(103, 80, 164);
+
+  /* Secondary */
+  --md-sys-color-secondary: rgb(204, 194, 220);
+  --md-sys-color-on-secondary: rgb(51, 45, 65);
+  --md-sys-color-secondary-container: rgb(74, 68, 88);
+  --md-sys-color-on-secondary-container: rgb(232, 222, 248);
+
+  /* Tertiary */
+  --md-sys-color-tertiary: rgb(239, 184, 200);
+  --md-sys-color-on-tertiary: rgb(73, 37, 50);
+  --md-sys-color-tertiary-container: rgb(99, 59, 72);
+  --md-sys-color-on-tertiary-container: rgb(255, 216, 228);
+
+  /* Error */
+  --md-sys-color-error: rgb(255, 180, 171);
+  --md-sys-color-on-error: rgb(105, 0, 5);
+  --md-sys-color-error-container: rgb(147, 0, 10);
+  --md-sys-color-on-error-container: rgb(255, 218, 214);
+
+  /* Surfaces */
+  --md-sys-color-background: rgb(20, 18, 24);
+  --md-sys-color-on-background: rgb(230, 224, 233);
+  --md-sys-color-surface: rgb(20, 18, 24);
+  --md-sys-color-on-surface: rgb(230, 224, 233);
+  --md-sys-color-surface-variant: rgb(73, 69, 79);
+  --md-sys-color-on-surface-variant: rgb(202, 196, 208);
+  --md-sys-color-surface-dim: rgb(20, 18, 24);
+  --md-sys-color-surface-bright: rgb(59, 56, 62);
+  --md-sys-color-surface-container-lowest: rgb(15, 13, 19);
+  --md-sys-color-surface-container-low: rgb(29, 27, 32);
+  --md-sys-color-surface-container: rgb(33, 31, 38);
+  --md-sys-color-surface-container-high: rgb(43, 41, 48);
+  --md-sys-color-surface-container-highest: rgb(54, 52, 59);
+  --md-sys-color-surface-tint: rgb(208, 188, 255);
+  --md-sys-color-inverse-surface: rgb(230, 224, 233);
+  --md-sys-color-inverse-on-surface: rgb(50, 47, 53);
+
+  /* Outline & utility */
+  --md-sys-color-outline: rgb(147, 143, 153);
+  --md-sys-color-outline-variant: rgb(73, 69, 79);
+  --md-sys-color-shadow: rgb(0, 0, 0);
+  --md-sys-color-scrim: rgb(0, 0, 0);
+
+  /* Fixed accent roles (same in light & dark by M3 spec) */
+  --md-sys-color-primary-fixed: rgb(234, 221, 255);
+  --md-sys-color-primary-fixed-dim: rgb(208, 188, 255);
+  --md-sys-color-on-primary-fixed: rgb(33, 0, 93);
+  --md-sys-color-on-primary-fixed-variant: rgb(79, 55, 139);
+  --md-sys-color-secondary-fixed: rgb(232, 222, 248);
+  --md-sys-color-secondary-fixed-dim: rgb(204, 194, 220);
+  --md-sys-color-on-secondary-fixed: rgb(29, 25, 43);
+  --md-sys-color-on-secondary-fixed-variant: rgb(74, 68, 88);
+  --md-sys-color-tertiary-fixed: rgb(255, 216, 228);
+  --md-sys-color-tertiary-fixed-dim: rgb(239, 184, 200);
+  --md-sys-color-on-tertiary-fixed: rgb(49, 17, 29);
+  --md-sys-color-on-tertiary-fixed-variant: rgb(99, 59, 72);
+}
+
+/* ==========================================================================
+   Accent axis: [data-accent] overrides the role tokens independently of the
+   light/dark [data-theme] axis. Absent = default violet baseline above.
+   Generated with @material/material-color-utilities (TonalSpot, contrast 0);
+   regenerate via frontend/scripts/gen-accent.mjs '<source>' <name>.
+   ========================================================================== */
+
+/* teal accent (source #01776c) */
+:root[data-accent="teal"],
+.light[data-accent="teal"] {
+  /* Primary */
+  --md-sys-color-primary: rgb(0, 106, 96);
+  --md-sys-color-on-primary: rgb(255, 255, 255);
+  --md-sys-color-primary-container: rgb(158, 242, 229);
+  --md-sys-color-on-primary-container: rgb(0, 32, 28);
+  --md-sys-color-inverse-primary: rgb(130, 213, 201);
+  /* Secondary */
+  --md-sys-color-secondary: rgb(74, 99, 95);
+  --md-sys-color-on-secondary: rgb(255, 255, 255);
+  --md-sys-color-secondary-container: rgb(204, 232, 226);
+  --md-sys-color-on-secondary-container: rgb(5, 32, 28);
+  /* Tertiary */
+  --md-sys-color-tertiary: rgb(70, 97, 121);
+  --md-sys-color-on-tertiary: rgb(255, 255, 255);
+  --md-sys-color-tertiary-container: rgb(204, 229, 255);
+  --md-sys-color-on-tertiary-container: rgb(0, 29, 49);
+  /* Error */
+  --md-sys-color-error: rgb(186, 26, 26);
+  --md-sys-color-on-error: rgb(255, 255, 255);
+  --md-sys-color-error-container: rgb(255, 218, 214);
+  --md-sys-color-on-error-container: rgb(65, 0, 2);
+  /* Surfaces */
+  --md-sys-color-background: rgb(244, 251, 248);
+  --md-sys-color-on-background: rgb(22, 29, 28);
+  --md-sys-color-surface: rgb(244, 251, 248);
+  --md-sys-color-on-surface: rgb(22, 29, 28);
+  --md-sys-color-surface-variant: rgb(218, 229, 226);
+  --md-sys-color-on-surface-variant: rgb(63, 73, 71);
+  --md-sys-color-surface-dim: rgb(213, 219, 217);
+  --md-sys-color-surface-bright: rgb(244, 251, 248);
+  --md-sys-color-surface-container-lowest: rgb(255, 255, 255);
+  --md-sys-color-surface-container-low: rgb(239, 245, 242);
+  --md-sys-color-surface-container: rgb(233, 239, 237);
+  --md-sys-color-surface-container-high: rgb(227, 234, 231);
+  --md-sys-color-surface-container-highest: rgb(221, 228, 225);
+  --md-sys-color-surface-tint: rgb(0, 106, 96);
+  --md-sys-color-inverse-surface: rgb(43, 50, 48);
+  --md-sys-color-inverse-on-surface: rgb(236, 242, 239);
+  /* Outline & utility */
+  --md-sys-color-outline: rgb(111, 121, 119);
+  --md-sys-color-outline-variant: rgb(190, 201, 198);
+  --md-sys-color-shadow: rgb(0, 0, 0);
+  --md-sys-color-scrim: rgb(0, 0, 0);
+  /* Fixed accent roles */
+  --md-sys-color-primary-fixed: rgb(158, 242, 229);
+  --md-sys-color-primary-fixed-dim: rgb(130, 213, 201);
+  --md-sys-color-on-primary-fixed: rgb(0, 32, 28);
+  --md-sys-color-on-primary-fixed-variant: rgb(0, 80, 72);
+  --md-sys-color-secondary-fixed: rgb(204, 232, 226);
+  --md-sys-color-secondary-fixed-dim: rgb(177, 204, 198);
+  --md-sys-color-on-secondary-fixed: rgb(5, 32, 28);
+  --md-sys-color-on-secondary-fixed-variant: rgb(51, 75, 71);
+  --md-sys-color-tertiary-fixed: rgb(204, 229, 255);
+  --md-sys-color-tertiary-fixed-dim: rgb(173, 202, 230);
+  --md-sys-color-on-tertiary-fixed: rgb(0, 29, 49);
+  --md-sys-color-on-tertiary-fixed-variant: rgb(45, 73, 97);
+}
+
+:root[data-accent="teal"][data-theme="dark"],
+.dark[data-accent="teal"] {
+  /* Primary */
+  --md-sys-color-primary: rgb(130, 213, 201);
+  --md-sys-color-on-primary: rgb(0, 55, 50);
+  --md-sys-color-primary-container: rgb(0, 80, 72);
+  --md-sys-color-on-primary-container: rgb(158, 242, 229);
+  --md-sys-color-inverse-primary: rgb(0, 106, 96);
+  /* Secondary */
+  --md-sys-color-secondary: rgb(177, 204, 198);
+  --md-sys-color-on-secondary: rgb(28, 53, 49);
+  --md-sys-color-secondary-container: rgb(51, 75, 71);
+  --md-sys-color-on-secondary-container: rgb(204, 232, 226);
+  /* Tertiary */
+  --md-sys-color-tertiary: rgb(173, 202, 230);
+  --md-sys-color-on-tertiary: rgb(21, 51, 73);
+  --md-sys-color-tertiary-container: rgb(45, 73, 97);
+  --md-sys-color-on-tertiary-container: rgb(204, 229, 255);
+  /* Error */
+  --md-sys-color-error: rgb(255, 180, 171);
+  --md-sys-color-on-error: rgb(105, 0, 5);
+  --md-sys-color-error-container: rgb(147, 0, 10);
+  --md-sys-color-on-error-container: rgb(255, 218, 214);
+  /* Surfaces */
+  --md-sys-color-background: rgb(14, 21, 19);
+  --md-sys-color-on-background: rgb(221, 228, 225);
+  --md-sys-color-surface: rgb(14, 21, 19);
+  --md-sys-color-on-surface: rgb(221, 228, 225);
+  --md-sys-color-surface-variant: rgb(63, 73, 71);
+  --md-sys-color-on-surface-variant: rgb(190, 201, 198);
+  --md-sys-color-surface-dim: rgb(14, 21, 19);
+  --md-sys-color-surface-bright: rgb(52, 58, 57);
+  --md-sys-color-surface-container-lowest: rgb(9, 15, 14);
+  --md-sys-color-surface-container-low: rgb(22, 29, 28);
+  --md-sys-color-surface-container: rgb(26, 33, 32);
+  --md-sys-color-surface-container-high: rgb(37, 43, 42);
+  --md-sys-color-surface-container-highest: rgb(48, 54, 53);
+  --md-sys-color-surface-tint: rgb(130, 213, 201);
+  --md-sys-color-inverse-surface: rgb(221, 228, 225);
+  --md-sys-color-inverse-on-surface: rgb(43, 50, 48);
+  /* Outline & utility */
+  --md-sys-color-outline: rgb(137, 147, 144);
+  --md-sys-color-outline-variant: rgb(63, 73, 71);
+  --md-sys-color-shadow: rgb(0, 0, 0);
+  --md-sys-color-scrim: rgb(0, 0, 0);
+  /* Fixed accent roles */
+  --md-sys-color-primary-fixed: rgb(158, 242, 229);
+  --md-sys-color-primary-fixed-dim: rgb(130, 213, 201);
+  --md-sys-color-on-primary-fixed: rgb(0, 32, 28);
+  --md-sys-color-on-primary-fixed-variant: rgb(0, 80, 72);
+  --md-sys-color-secondary-fixed: rgb(204, 232, 226);
+  --md-sys-color-secondary-fixed-dim: rgb(177, 204, 198);
+  --md-sys-color-on-secondary-fixed: rgb(5, 32, 28);
+  --md-sys-color-on-secondary-fixed-variant: rgb(51, 75, 71);
+  --md-sys-color-tertiary-fixed: rgb(204, 229, 255);
+  --md-sys-color-tertiary-fixed-dim: rgb(173, 202, 230);
+  --md-sys-color-on-tertiary-fixed: rgb(0, 29, 49);
+  --md-sys-color-on-tertiary-fixed-variant: rgb(45, 73, 97);
+}
