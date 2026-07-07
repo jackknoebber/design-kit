@@ -3,15 +3,14 @@
 // (Material Symbols) name as the SEMANTIC name; non-M3 sets map it to their
 // own glyph. Unmapped names fall back to Material Symbols so nothing breaks.
 //
-// cupertino: Framework7 Icons — MIT-licensed, SF-Symbols-style, ligature font
-// (same usage model as Material Symbols). The font is loaded by
-// themes/cupertino.css.
+// cupertino + ios26: Framework7 Icons — MIT-licensed, SF-Symbols-style,
+// ligature font (same usage model as Material Symbols). The font is loaded by
+// themes/cupertino.css AND themes/ios26.css (whichever is imported).
 
-export const ICON_SETS = {
-  cupertino: {
-    className: 'f7-icons',
-    map: {
-      add: 'plus',
+const F7 = {
+  className: 'f7-icons',
+  map: {
+    add: 'plus',
       archive: 'archivebox',
       unarchive: 'tray_arrow_up',
       bar_chart: 'chart_bar',
@@ -40,8 +39,12 @@ export const ICON_SETS = {
       search: 'search',
       settings: 'gear_alt',
       table_view: 'table',
-    },
   },
+};
+
+export const ICON_SETS = {
+  cupertino: F7,
+  ios26: F7,
 };
 
 // Resolve a semantic (Material) icon name for the active design.

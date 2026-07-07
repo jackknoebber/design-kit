@@ -1,0 +1,192 @@
+/* ios26's icon set: Framework7 Icons (MIT, SF-Symbols-style ligature font),
+   shared with cupertino via the icon-set registry. (@import precedes rules;
+   browsers dedupe if cupertino.css is also loaded.) */
+@import url('https://cdn.jsdelivr.net/npm/framework7-icons@5.0.5/css/framework7-icons.css');
+
+/* ===========================================================================
+   ios26 — Liquid Glass design system, ingested from the "iOS and iPadOS 26"
+   community Figma file (see themes/ios26.report.md for the inventory).
+   Signature: the new systemBlue #0088ff + pink #ff2d55 accents, SF Pro,
+   VERY round concentric corners (8.5 / 16 / 22 / 34 / 50 / capsule), soft
+   diffuse shadows, translucent blurred dialogs. Neutral gray surfaces.
+   Distinct from `cupertino` (classic hairline iOS), which stays as-is.
+
+   Activate: import this file (after styles.css) and set
+   <html data-design="ios26">. Combines with data-theme="dark".
+   =========================================================================== */
+
+/* ---- Non-color: typeface, shape, shadow character (both modes) ---- */
+:root[data-design='ios26'] {
+  --md-ref-typeface-brand: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', system-ui, sans-serif;
+  --md-ref-typeface-plain: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif;
+  --md-ref-typeface-mono: ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* Liquid Glass corner scale — from the file's radius histogram
+     (8.5px small elements, 34px cards, capsules everywhere). */
+  --md-sys-shape-corner-none: 0px;
+  --md-sys-shape-corner-extra-small: 8.5px;
+  --md-sys-shape-corner-small: 16px;
+  --md-sys-shape-corner-medium: 22px;
+  --md-sys-shape-corner-large: 28px;
+  --md-sys-shape-corner-large-increased: 34px;
+  --md-sys-shape-corner-extra-large: 34px;
+  --md-sys-shape-corner-extra-large-increased: 40px;
+  --md-sys-shape-corner-extra-extra-large: 50px;
+  --md-sys-shape-corner-full: 9999px;
+
+  /* Soft diffuse float — from the file's shadow histogram. */
+  --md-sys-elevation-level1: 0 1px 8px rgba(0, 0, 0, 0.12);
+  --md-sys-elevation-level2: 0 2px 20px rgba(0, 0, 0, 0.14);
+  --md-sys-elevation-level3: 0 2px 25px rgba(0, 0, 0, 0.18);
+  --md-sys-elevation-level4: 0 6px 40px rgba(0, 0, 0, 0.22);
+  --md-sys-elevation-level5: 0 10px 100px rgba(0, 0, 0, 0.28);
+}
+
+/* ---- Light ---- */
+:root[data-design='ios26'],
+.light[data-design='ios26'] {
+  /* Primary — iOS 26 systemBlue (Colors/Blue in the file) */
+  --md-sys-color-primary: rgb(0, 136, 255);
+  --md-sys-color-on-primary: rgb(255, 255, 255);
+  --md-sys-color-primary-container: rgb(212, 234, 255);
+  --md-sys-color-on-primary-container: rgb(0, 51, 102);
+  --md-sys-color-inverse-primary: rgb(64, 156, 255);
+  /* Secondary — neutral fills (Fills/Primary #787878 family) */
+  --md-sys-color-secondary: rgb(90, 96, 106);
+  --md-sys-color-on-secondary: rgb(255, 255, 255);
+  --md-sys-color-secondary-container: rgb(224, 229, 236);
+  --md-sys-color-on-secondary-container: rgb(28, 34, 44);
+  /* Tertiary — iOS 26 pink (Colors/Pink #ff2d55) */
+  --md-sys-color-tertiary: rgb(255, 45, 85);
+  --md-sys-color-on-tertiary: rgb(255, 255, 255);
+  --md-sys-color-tertiary-container: rgb(255, 215, 222);
+  --md-sys-color-on-tertiary-container: rgb(102, 8, 26);
+  /* Error — iOS systemRed */
+  --md-sys-color-error: rgb(255, 59, 48);
+  --md-sys-color-on-error: rgb(255, 255, 255);
+  --md-sys-color-error-container: rgb(255, 221, 219);
+  --md-sys-color-on-error-container: rgb(93, 6, 3);
+  /* Surfaces — neutral iOS gray ramp */
+  --md-sys-color-background: rgb(251, 251, 253);
+  --md-sys-color-on-background: rgb(0, 0, 0);
+  --md-sys-color-surface: rgb(251, 251, 253);
+  --md-sys-color-on-surface: rgb(0, 0, 0);
+  --md-sys-color-surface-variant: rgb(229, 229, 234);
+  --md-sys-color-on-surface-variant: rgb(60, 60, 67);
+  --md-sys-color-surface-dim: rgb(209, 209, 214);
+  --md-sys-color-surface-bright: rgb(251, 251, 253);
+  --md-sys-color-surface-container-lowest: rgb(255, 255, 255);
+  --md-sys-color-surface-container-low: rgb(247, 247, 250);
+  --md-sys-color-surface-container: rgb(242, 242, 247);
+  --md-sys-color-surface-container-high: rgb(237, 237, 237);
+  --md-sys-color-surface-container-highest: rgb(224, 224, 224);
+  --md-sys-color-surface-tint: rgb(0, 136, 255);
+  --md-sys-color-inverse-surface: rgb(44, 44, 46);
+  --md-sys-color-inverse-on-surface: rgb(242, 242, 247);
+  /* Outline & utility — systemGray hairlines */
+  --md-sys-color-outline: rgb(142, 142, 147);
+  --md-sys-color-outline-variant: rgb(209, 209, 214);
+  --md-sys-color-shadow: rgb(0, 0, 0);
+  --md-sys-color-scrim: rgb(0, 0, 0);
+  /* Fixed accent roles */
+  --md-sys-color-primary-fixed: rgb(212, 234, 255);
+  --md-sys-color-primary-fixed-dim: rgb(153, 207, 255);
+  --md-sys-color-on-primary-fixed: rgb(0, 51, 102);
+  --md-sys-color-on-primary-fixed-variant: rgb(0, 90, 168);
+  --md-sys-color-secondary-fixed: rgb(224, 229, 236);
+  --md-sys-color-secondary-fixed-dim: rgb(192, 199, 209);
+  --md-sys-color-on-secondary-fixed: rgb(28, 34, 44);
+  --md-sys-color-on-secondary-fixed-variant: rgb(64, 72, 84);
+  --md-sys-color-tertiary-fixed: rgb(255, 215, 222);
+  --md-sys-color-tertiary-fixed-dim: rgb(255, 173, 188);
+  --md-sys-color-on-tertiary-fixed: rgb(102, 8, 26);
+  --md-sys-color-on-tertiary-fixed-variant: rgb(155, 15, 40);
+}
+
+/* ---- Dark ---- */
+:root[data-design='ios26'][data-theme='dark'],
+.dark[data-design='ios26'] {
+  --md-sys-color-primary: rgb(10, 142, 255);
+  --md-sys-color-on-primary: rgb(255, 255, 255);
+  --md-sys-color-primary-container: rgb(0, 64, 128);
+  --md-sys-color-on-primary-container: rgb(212, 234, 255);
+  --md-sys-color-inverse-primary: rgb(0, 136, 255);
+  --md-sys-color-secondary: rgb(174, 174, 178);
+  --md-sys-color-on-secondary: rgb(28, 28, 30);
+  --md-sys-color-secondary-container: rgb(51, 51, 51);
+  --md-sys-color-on-secondary-container: rgb(224, 229, 236);
+  --md-sys-color-tertiary: rgb(255, 55, 95);
+  --md-sys-color-on-tertiary: rgb(255, 255, 255);
+  --md-sys-color-tertiary-container: rgb(120, 12, 34);
+  --md-sys-color-on-tertiary-container: rgb(255, 215, 222);
+  --md-sys-color-error: rgb(255, 69, 58);
+  --md-sys-color-on-error: rgb(255, 255, 255);
+  --md-sys-color-error-container: rgb(115, 12, 8);
+  --md-sys-color-on-error-container: rgb(255, 218, 214);
+  /* Surfaces — iOS dark: black canvas, elevated gray cards */
+  --md-sys-color-background: rgb(28, 28, 30);
+  --md-sys-color-on-background: rgb(255, 255, 255);
+  --md-sys-color-surface: rgb(28, 28, 30);
+  --md-sys-color-on-surface: rgb(255, 255, 255);
+  --md-sys-color-surface-variant: rgb(51, 51, 51);
+  --md-sys-color-on-surface-variant: rgb(153, 153, 153);
+  --md-sys-color-surface-dim: rgb(0, 0, 0);
+  --md-sys-color-surface-bright: rgb(64, 64, 64);
+  --md-sys-color-surface-container-lowest: rgb(10, 10, 12);
+  --md-sys-color-surface-container-low: rgb(18, 18, 18);
+  --md-sys-color-surface-container: rgb(0, 0, 0);
+  --md-sys-color-surface-container-high: rgb(38, 38, 38);
+  --md-sys-color-surface-container-highest: rgb(51, 51, 51);
+  --md-sys-color-surface-tint: rgb(10, 142, 255);
+  --md-sys-color-inverse-surface: rgb(242, 242, 247);
+  --md-sys-color-inverse-on-surface: rgb(28, 28, 30);
+  --md-sys-color-outline: rgb(102, 102, 102);
+  --md-sys-color-outline-variant: rgb(56, 56, 58);
+  --md-sys-color-shadow: rgb(0, 0, 0);
+  --md-sys-color-scrim: rgb(0, 0, 0);
+  --md-sys-color-primary-fixed: rgb(212, 234, 255);
+  --md-sys-color-primary-fixed-dim: rgb(153, 207, 255);
+  --md-sys-color-on-primary-fixed: rgb(0, 51, 102);
+  --md-sys-color-on-primary-fixed-variant: rgb(0, 90, 168);
+  --md-sys-color-secondary-fixed: rgb(224, 229, 236);
+  --md-sys-color-secondary-fixed-dim: rgb(192, 199, 209);
+  --md-sys-color-on-secondary-fixed: rgb(28, 34, 44);
+  --md-sys-color-on-secondary-fixed-variant: rgb(64, 72, 84);
+  --md-sys-color-tertiary-fixed: rgb(255, 215, 222);
+  --md-sys-color-tertiary-fixed-dim: rgb(255, 173, 188);
+  --md-sys-color-on-tertiary-fixed: rgb(102, 8, 26);
+  --md-sys-color-on-tertiary-fixed-variant: rgb(155, 15, 40);
+}
+
+/* ---- Structural: enclosed rounded fields + Liquid Glass dialogs ---------- */
+/* Fields: enclosed like iOS, but with the 26-era generous rounding (the
+   corner-small token here is 16px, so this reads much softer than cupertino). */
+[data-design='ios26'] .dk-textfield--filled .dk-field__shell,
+[data-design='ios26'] .dk-nativefield {
+  background: var(--md-sys-color-surface-container-lowest);
+  border: 1px solid var(--md-sys-color-outline-variant);
+  border-radius: var(--md-sys-shape-corner-small);
+  box-shadow: none;
+}
+[data-design='ios26'] .dk-textfield--filled.dk-textfield--focused .dk-field__shell,
+[data-design='ios26'] .dk-nativefield--focused {
+  border-color: var(--md-sys-color-primary);
+  box-shadow: inset 0 0 0 1px var(--md-sys-color-primary);
+}
+[data-design='ios26'] .dk-textfield--filled.dk-textfield--error .dk-field__shell {
+  border-color: var(--md-sys-color-error);
+}
+/* Dialogs: Liquid Glass — translucent surface + backdrop blur, capsule-round. */
+[data-design='ios26'] .dk-dialog {
+  background: color-mix(in srgb, var(--md-sys-color-surface) 78%, transparent);
+  -webkit-backdrop-filter: blur(28px) saturate(1.6);
+  backdrop-filter: blur(28px) saturate(1.6);
+  border: 1px solid color-mix(in srgb, var(--md-sys-color-outline-variant) 60%, transparent);
+  border-radius: var(--md-sys-shape-corner-extra-large);
+}
+/* Cards float softly instead of sitting flat-outlined. */
+[data-design='ios26'] .dk-card.dk-card--outlined {
+  border: none;
+  background: var(--md-sys-color-surface-container-lowest);
+  box-shadow: var(--md-sys-elevation-level1);
+}
