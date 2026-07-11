@@ -79,6 +79,7 @@ native-fields.tsx      M3Select / M3DateField / M3TextArea (native controls, fie
 scripts/gen-accent.mjs 49-role scheme from a seed color (material-color-utilities)
 scripts/ingest-figma.mjs  Figma file -> draft theme css + report.md
 .env                   FIGMA_TOKEN (gitignored, LOCAL ONLY; 90-day token created 2026-07-06)
+playground/            Vite gallery site — every token + component, live design/theme/accent switching
 ```
 
 ## Workflows
@@ -102,12 +103,16 @@ scripts/ingest-figma.mjs  Figma file -> draft theme css + report.md
   `npm install github:jackknoebber/design-kit` (repins lockfile to kit HEAD)
   → build → push (Railway auto-deploys). Lockfile pinning means kit pushes
   never break consumers silently.
-- **QA harness pattern:** in a consumer (or here with a scratch Vite app),
-  create a throwaway `fields-debug.html` + `src/fields-debug.tsx` rendering
-  the components under test, `npm i <local-kit-path> --no-save` to symlink,
-  verify in the preview browser, DELETE both files before committing, then
-  reinstall from github. (Idea: give the kit its own permanent playground app
-  so this stops being a throwaway.)
+- **QA / visual review — the playground:** `playground/` is a permanent Vite
+  gallery (replaces the old throwaway-harness pattern). Foundations pages
+  (Color / Typography / Shape & elevation / Icons) resolve token values live;
+  Components pages render every component's variants/states; sidebar switches
+  design/theme/accent (persisted in localStorage, restored pre-paint).
+  Run locally: `npm run dev` in `playground/` (or the `playground` entry in
+  `.claude/launch.json`). It imports the kit consumer-style via a
+  `design-kit` → repo-root Vite alias, so it exercises real import paths.
+  Deployed by `.github/workflows/pages.yml` on every push to main:
+  **https://jackknoebber.github.io/design-kit/**
 
 ## Consumers
 
@@ -146,7 +151,6 @@ scripts/ingest-figma.mjs  Figma file -> draft theme css + report.md
   components.css conventions (double-class variants).
 - Gumroad has no custom icon set yet (falls back to Material) — pick a chunky
   set (e.g. Phosphor bold) and add a map in icon-sets.js if wanted.
-- A permanent kit playground/demo app (replaces the throwaway harness).
 - Figma token in `.env` expires ~2026-10-04; Jack can revoke earlier in Figma
   → Settings → Security (it transited chat once).
 - Versioning is "pin by lockfile"; consider git tags if consumers multiply.

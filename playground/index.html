@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>design-kit</title>
+    <script>
+      // Restore theming attributes BEFORE first paint (no flash of wrong design).
+      (function () {
+        var el = document.documentElement;
+        var d = localStorage.getItem('dkpg-design');
+        if (d && d !== 'm3') el.setAttribute('data-design', d);
+        var a = localStorage.getItem('dkpg-accent');
+        if (a) el.setAttribute('data-accent', a);
+        var t = localStorage.getItem('dkpg-theme');
+        if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        el.setAttribute('data-theme', t);
+        el.style.colorScheme = t;
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

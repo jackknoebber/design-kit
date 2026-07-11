@@ -1,0 +1,28 @@
+/* Playground chrome. Everything visual comes from kit tokens so the chrome
+   itself re-skins when the design system switches. */
+
+* { box-sizing: border-box; }
+
+html, body, #root { height: 100%; }
+
+body {
+  margin: 0;
+  line-height: 1.5; /* unitless — the M3 base 24px inflates small text */
+  background: var(--md-sys-color-surface);
+  color: var(--md-sys-color-on-surface);
+}
+
+.pg-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 14px;
+  border-radius: var(--md-sys-shape-corner-full);
+  color: var(--md-sys-color-on-surface-variant);
+  text-decoration: none;
+}
+.pg-nav-link:hover { background: var(--md-sys-color-surface-container-high); }
+.pg-nav-link.pg-active {
+  background: var(--md-sys-color-secondary-container);
+  color: var(--md-sys-color-on-secondary-container);
+}
