@@ -38,6 +38,18 @@ export function resolveToken(name) {
   return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
 }
 
+/** Reactive media-query match. */
+export function useMediaQuery(query) {
+  const [matches, setMatches] = useState(() => window.matchMedia(query).matches);
+  useEffect(() => {
+    const mq = window.matchMedia(query);
+    const onChange = () => setMatches(mq.matches);
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
+  }, [query]);
+  return matches;
+}
+
 export function Page({ title, intro, children }) {
   return (
     <div>

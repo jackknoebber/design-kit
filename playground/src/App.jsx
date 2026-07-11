@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { M3Select } from 'design-kit/native-fields';
 import { Switch } from 'design-kit/components/forms/Switch';
-import { type, useHtmlEnv } from './ui.jsx';
+import { IconButton } from 'design-kit/components/actions/IconButton';
+import { type, useHtmlEnv, useMediaQuery } from './ui.jsx';
 
 import { Overview } from './pages/Overview.jsx';
 import { Colors } from './pages/Colors.jsx';
@@ -85,15 +86,130 @@ function setAccent(on) {
   localStorage.setItem('dkpg-accent', on ? 'teal' : '');
 }
 
+function SidebarContent({ env, route }) {
+  return (
+    <>
+      <div style={{ padding: '0 14px 4px' }}>
+        <div style={{ ...type('title-large'), fontFamily: 'var(--md-ref-typeface-brand)' }}>design-kit</div>
+        <div style={{ ...type('body-small'), color: 'var(--md-sys-color-on-surface-variant)' }}>
+          one contract · four design systems
+        </div>
+      </div>
+
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 12, padding: '16px 6px 8px' }}>
+        <M3Select label="Design system" value={env.design} onChange={(e) => setDesign(e.target.value)}>
+          {DESIGNS.map((d) => (
+            <option key={d.value} value={d.value}>{d.label}</option>
+          ))}
+        </M3Select>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8, padding: '0 8px' }}>
+          <Switch checked={env.theme === 'dark'} onChange={setTheme} label="Dark theme" />
+          {env.design === 'm3' && (
+            <Switch checked={env.accent === 'teal'} onChange={setAccent} label="Teal accent" />
+          )}
+        </div>
+      </div>
+
+      <nav>
+        {NAV.map((group) => (
+          <div key={group.group} style={{ marginTop: 16 }}>
+            <div
+              style={{
+                ...type('label-small'),
+                color: 'var(--md-sys-color-on-surface-variant)',
+                textTransform: 'uppercase',
+                letterSpacing: '.8px',
+                padding: '0 14px 6px',
+              }}
+            >
+              {group.group}
+            </div>
+            {group.items.map((item) => (
+              <a
+                key={item.id}
+                href={`#/${item.id}`}
+                className={`pg-nav-link${item.id === route ? ' pg-active' : ''}`}
+                style={type('label-large')}
+              >
+                {item.label}
+              </a>
+            ))}
+          </div>
+        ))}
+      </nav>
+    </>
+  );
+}
+
 export function App() {
   const env = useHtmlEnv();
   const route = useRoute();
+  const isMobile = useMediaQuery('(max-width: 840px)');
+  const [menuOpen, setMenuOpen] = useState(false);
   const active = NAV.flatMap((g) => g.items).find((i) => i.id === route) || NAV[0].items[0];
   const PageComponent = active.page;
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    setMenuOpen(false); // picking a page closes the mobile drawer
   }, [route]);
+
+  if (isMobile) {
+    return (
+      <div>
+        <header
+          style={{
+            position: 'sticky',
+            top: 0,
+            zIndex: 20,
+            display: 'flex',
+            alignItems: 'center',
+            gap: 6,
+            padding: '8px 10px',
+            background: 'var(--md-sys-color-surface-container-low)',
+            borderBottom: '1px solid var(--md-sys-color-outline-variant)',
+          }}
+        >
+          <IconButton icon="menu" ariaLabel="Open navigation" onClick={() => setMenuOpen(true)} />
+          <span style={{ ...type('title-medium'), fontFamily: 'var(--md-ref-typeface-brand)' }}>design-kit</span>
+          <span style={{ ...type('label-medium'), color: 'var(--md-sys-color-on-surface-variant)', marginLeft: 'auto' }}>
+            {active.label}
+          </span>
+        </header>
+
+        {menuOpen && (
+          <div
+            onClick={() => setMenuOpen(false)}
+            style={{ position: 'fixed', inset: 0, zIndex: 29, background: 'color-mix(in srgb, var(--md-sys-color-scrim) 45%, transparent)' }}
+          />
+        )}
+        <aside
+          style={{
+            position: 'fixed',
+            top: 0,
+            bottom: 0,
+            left: 0,
+            zIndex: 30,
+            width: 'min(300px, 85vw)',
+            overflowY: 'auto',
+            padding: '20px 14px 32px',
+            background: 'var(--md-sys-color-surface-container-low)',
+            borderRight: '1px solid var(--md-sys-color-outline-variant)',
+            transform: menuOpen ? 'translateX(0)' : 'translateX(-105%)',
+            transition: 'transform .25s ease',
+          }}
+        >
+          <SidebarContent env={env} route={route} />
+        </aside>
+
+        <main>
+          <div style={{ padding: '24px 16px 80px' }}>
+            <PageComponent key={route} env={env} />
+          </div>
+        </main>
+      </div>
+    );
+  }
 
   return (
     <div style={{ display: 'flex', minHeight: '100%' }}>
@@ -110,54 +226,7 @@ export function App() {
           borderRight: '1px solid var(--md-sys-color-outline-variant)',
         }}
       >
-        <div style={{ padding: '0 14px 4px' }}>
-          <div style={{ ...type('title-large'), fontFamily: 'var(--md-ref-typeface-brand)' }}>design-kit</div>
-          <div style={{ ...type('body-small'), color: 'var(--md-sys-color-on-surface-variant)' }}>
-            one contract · four design systems
-          </div>
-        </div>
-
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 12, padding: '16px 6px 8px' }}>
-          <M3Select label="Design system" value={env.design} onChange={(e) => setDesign(e.target.value)}>
-            {DESIGNS.map((d) => (
-              <option key={d.value} value={d.value}>{d.label}</option>
-            ))}
-          </M3Select>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 8, padding: '0 8px' }}>
-            <Switch checked={env.theme === 'dark'} onChange={setTheme} label="Dark theme" />
-            {env.design === 'm3' && (
-              <Switch checked={env.accent === 'teal'} onChange={setAccent} label="Teal accent" />
-            )}
-          </div>
-        </div>
-
-        <nav>
-          {NAV.map((group) => (
-            <div key={group.group} style={{ marginTop: 16 }}>
-              <div
-                style={{
-                  ...type('label-small'),
-                  color: 'var(--md-sys-color-on-surface-variant)',
-                  textTransform: 'uppercase',
-                  letterSpacing: '.8px',
-                  padding: '0 14px 6px',
-                }}
-              >
-                {group.group}
-              </div>
-              {group.items.map((item) => (
-                <a
-                  key={item.id}
-                  href={`#/${item.id}`}
-                  className={`pg-nav-link${item.id === route ? ' pg-active' : ''}`}
-                  style={type('label-large')}
-                >
-                  {item.label}
-                </a>
-              ))}
-            </div>
-          ))}
-        </nav>
+        <SidebarContent env={env} route={route} />
       </aside>
 
       <main style={{ flex: 1, minWidth: 0 }}>

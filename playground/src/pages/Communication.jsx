@@ -31,10 +31,10 @@ export function Communication() {
       <Section title="Progress — linear">
         <div style={{ display: 'flex', flexDirection: 'column', gap: 24, maxWidth: 420 }}>
           <Spec label="determinate · 65%">
-            <ProgressIndicator variant="linear" value={65} style={{ width: 420 }} />
+            <ProgressIndicator variant="linear" value={65} style={{ width: '100%', minWidth: 240 }} />
           </Spec>
           <Spec label="indeterminate">
-            <ProgressIndicator variant="linear" style={{ width: 420 }} />
+            <ProgressIndicator variant="linear" style={{ width: '100%', minWidth: 240 }} />
           </Spec>
         </div>
       </Section>
