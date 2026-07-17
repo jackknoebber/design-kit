@@ -51,6 +51,13 @@ const DESIGNS = [
   { value: 'gumroad', label: 'Gumroad' },
 ];
 
+const ACCENTS = [
+  { value: '', label: 'Violet (default)' },
+  { value: 'teal', label: 'Teal' },
+  { value: 'yellow', label: 'Yellow' },
+  { value: 'salmon', label: 'Salmon' },
+];
+
 function currentRoute() {
   return window.location.hash.replace(/^#\/?/, '') || 'overview';
 }
@@ -79,11 +86,11 @@ function setTheme(dark) {
   localStorage.setItem('dkpg-theme', t);
 }
 
-function setAccent(on) {
+function setAccent(name) {
   const el = document.documentElement;
-  if (on) el.setAttribute('data-accent', 'teal');
+  if (name) el.setAttribute('data-accent', name);
   else el.removeAttribute('data-accent');
-  localStorage.setItem('dkpg-accent', on ? 'teal' : '');
+  localStorage.setItem('dkpg-accent', name || '');
 }
 
 function SidebarContent({ env, route }) {
@@ -102,11 +109,15 @@ function SidebarContent({ env, route }) {
             <option key={d.value} value={d.value}>{d.label}</option>
           ))}
         </M3Select>
+        {env.design === 'm3' && (
+          <M3Select label="Color scheme" value={env.accent} onChange={(e) => setAccent(e.target.value)}>
+            {ACCENTS.map((a) => (
+              <option key={a.value} value={a.value}>{a.label}</option>
+            ))}
+          </M3Select>
+        )}
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8, padding: '0 8px' }}>
           <Switch checked={env.theme === 'dark'} onChange={setTheme} label="Dark theme" />
-          {env.design === 'm3' && (
-            <Switch checked={env.accent === 'teal'} onChange={setAccent} label="Teal accent" />
-          )}
         </div>
       </div>
 

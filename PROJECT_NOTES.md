@@ -23,13 +23,13 @@ light/dark) by loading a theme file and setting attributes on `<html>`.
 
 | data-design | Look | Source of values |
 |---|---|---|
-| *(unset)* = M3 | Material 3 baseline, violet seed; `data-accent="teal"` variant | M3 Figma variables (original handoff bundle) + `gen-accent.mjs` for teal |
+| *(unset)* = M3 | Material 3 baseline, violet seed; `data-accent` variants: teal / yellow / salmon | M3 Figma accents + `gen-accent.mjs` (quiet neutrals: chroma 2/4) |
 | `cupertino` | Classic iOS: hairline enclosed fields, systemBlue #007AFF, SF stack, F7 icons | Hand-authored |
 | `ios26` | Liquid Glass: new blue #0088ff + pink tertiary, HUGE radii (8.5/16/22/34/50), soft diffuse shadows, translucent blurred dialogs, borderless floating cards, F7 icons | Ingested from "iOS and iPadOS 26" community Figma file (`themes/ios26.report.md`) |
 | `gumroad` | Brutalist-playful: pink #FF90E8 + black ink, stone neutrals, BLACK 1px borders, hard offset shadows (4px/8px), 4px corners, Archivo (Mabry Pro stand-in) | Ingested from Jack's copy of the Gumroad DS community file (`themes/gumroad.report.md`) |
 
 Theming axes on `<html>` (all independent):
-`data-theme` (light/dark) · `data-accent` (color scheme within M3, e.g. teal) ·
+`data-theme` (light/dark) · `data-accent` (M3 scheme: teal / yellow / salmon) ·
 `data-design` (design system). Theme files load after `styles.css` and win by
 order+specificity; a design wins over an accent when both are set.
 
@@ -40,7 +40,7 @@ order+specificity; a design wins over an accent when both are set.
    (`--md-ref-typeface-*`), type scale, shape scale
    (`--md-sys-shape-corner-*`), elevation (`--md-sys-elevation-level0..5`),
    expression (`--dk-border-width`). `colors.css` also holds the
-   `[data-accent="teal"]` scheme.
+   `[data-accent]` schemes (teal / yellow / salmon).
 2. **`components.css`** — structural base styles (M3 look) for the five
    "identity" components under stable `dk-*` classes: TextField
    (`.dk-textfield`, `.dk-field__*`), native fields (`.dk-nativefield`),
@@ -72,7 +72,7 @@ CONTRACT.md            the token contract + how to add a theme (checklist at bot
 SKILL.md               UI conventions for Claude sessions in CONSUMER projects
 PROJECT_NOTES.md       this file
 components.css         dk-* structural base styles (M3 look)
-tokens/                contract values (M3 baseline + teal accent)
+tokens/                contract values (M3 baseline + teal/yellow/salmon accents)
 themes/                cupertino.css · ios26.css · gumroad.css (+ *.report.md ingestion inventories)
 components/            React components; core/{Icon,useDesign,icon-sets}
 native-fields.tsx      M3Select / M3DateField / M3TextArea (native controls, field shell)
@@ -84,8 +84,9 @@ playground/            Vite gallery site — every token + component, live desig
 
 ## Workflows
 
-- **New color scheme (within M3):** `npm run gen-accent -- '#seed' name` →
-  wrap in `[data-accent="name"]` in `tokens/colors.css`.
+- **New color scheme (within M3):** `npm run gen-accent -- '#seed' name
+  --neutral 2 --neutral-variant 4` (the kit's quiet-neutral standard) → paste
+  into `tokens/colors.css`.
 - **New design system:** `FIGMA_TOKEN=$(grep -o 'figd_.*' .env) node
   scripts/ingest-figma.mjs <figma-url> <name>` → draft `themes/<name>.css` +
   report → hand-tune signature roles (the auto-seed once picked the PayPal
@@ -128,6 +129,10 @@ playground/            Vite gallery site — every token + component, live desig
 - Surfaces are seed-tinted per design; depth = stepping the 5
   surface-container tones, NOT shadows (M3 tone-based surface color). Never
   neutralize a design's surfaces to grey wholesale.
+- BUT keep M3 neutrals QUIET: spec-default neutral chroma (6/8) reads as
+  "everything is lavender/mint" at page scale (Jack, 2026-07). The kit
+  standard is neutral 2 / neutral-variant 4 (gen-accent flags); accents keep
+  full TonalSpot chroma so color CONTRASTS with the surfaces.
 - `outline` = identity/component borders; `outline-variant` = SUBTLE hairlines
   (calendar grids, table borders, dividers). Gumroad taught this: both black →
   shouty grids. Components that must keep bold borders reference `outline`

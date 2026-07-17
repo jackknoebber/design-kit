@@ -49,7 +49,7 @@ import 'design-kit/themes/gumroad.css';   // brutalist-playful
 ```
 
 The three axes are independent: `data-design` (design system; unset = M3),
-`data-theme` (light/dark), `data-accent` (color scheme within M3, e.g. teal).
+`data-theme` (light/dark), `data-accent` (color scheme within M3: teal / yellow / salmon).
 
 **4. Use the components** — deep, extensionless imports (tsc reads the
 `.d.ts` siblings, Vite compiles the `.jsx` source):
@@ -78,7 +78,7 @@ every future session picks them up automatically.
 ## What's here
 
 ```
-tokens/       base, colors (M3 violet baseline + teal accent), typography, shape, elevation, fonts
+tokens/       base, colors (M3 violet baseline + teal/yellow/salmon accents, quiet neutrals), typography, shape, elevation, fonts
 themes/       cupertino.css · ios26.css · gumroad.css — each implements the full contract
 components/   ~30 React components (.jsx + .d.ts) — actions, forms, navigation, overlays, …
 components.css  structural dk-* base styles for the identity components (themes restyle these)
@@ -105,7 +105,8 @@ then build and push the consumer (Railway redeploys on push). Pin a tag
 ## Adding a design system
 
 See the bottom of [CONTRACT.md](CONTRACT.md). Short version: generate colors
-with `npm run gen-accent -- '#seed' name` (or draft from Figma with
+with `npm run gen-accent -- '#seed' name --neutral 2 --neutral-variant 4`
+(the kit's quiet-neutral surfaces; or draft from Figma with
 `scripts/ingest-figma.mjs`), wrap in `[data-design="name"]`, override the
 typeface refs + shape scale + elevation character, add structural `dk-*`
 overrides and an icon map if wanted, verify light and dark — then check every
