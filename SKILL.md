@@ -32,6 +32,57 @@ import { M3Select, M3DateField, M3TextArea } from 'design-kit/native-fields';
 Components are source `.jsx` with `.d.ts` siblings — Vite compiles them from
 node_modules; tsc reads the `.d.ts`. Import them extensionless as above.
 
+## Installing as an iOS PWA (read if the app is Add-to-Home-Screen'd)
+
+Hard-won bug: on an **installed** iOS PWA (`display: standalone`), anything
+anchored to the bottom — bottom nav, FAB, a full-height `100dvh` shell —
+renders **~59pt too high**, with a dead band of the manifest `background_color`
+below it. Cause: iOS sizes the standalone webview SHORTER than the screen and
+top-anchors it (e.g. screen 852 → viewport 793 = 852 − status bar), so the
+missing ~59pt sit at the physical bottom where no CSS can paint. **The trigger
+is the web manifest** — specifically `orientation` / `start_url` / `scope`.
+
+**Fix — the minimal manifest recipe** (a sibling app with this got a correct
+full-bleed webview on the same phone). Include ONLY these keys; NO
+`orientation`, `start_url`, or `scope`:
+
+```json
+{ "name": "…", "short_name": "…", "description": "…",
+  "theme_color": "#…", "background_color": "#…",
+  "display": "standalone", "icons": [ … ] }
+```
+
+Keep in `index.html`:
+
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+```
+
+(`black-translucent` is IGNORED once a manifest exists — don't chase it.) In
+the full-bleed frame `env(safe-area-*)` is real, so:
+
+```css
+@media (display-mode: standalone) {
+  .app { position: fixed; inset: 0; height: auto; } /* pin shell; don't trust 100dvh */
+}
+.bottom-nav { position: fixed; bottom: 0; padding-bottom: env(safe-area-inset-bottom); }
+.fab        { bottom: max(env(safe-area-inset-bottom, 0px), 1.25rem); } /* inset IS the offset */
+```
+
+**Testing rules (this is why it battles):**
+1. Manifest/meta are read at **Add-to-Home-Screen time** → every test = delete
+   the icon, re-add from Safari. Relaunching does nothing.
+2. CSS/JS changes only need **force-quit + relaunch** (standalone keeps the
+   page alive; returning via the app switcher doesn't refetch).
+
+**Debug method:** don't theorize from screenshots — ship a temporary on-screen
+readout of `screen.height`, `window.innerHeight`,
+`document.documentElement.clientHeight`, and `env(safe-area-inset-top/bottom)`
+(via a hidden probe div's computed padding). The numbers say instantly whether
+the webview is cropped (manifest fix) or the shell isn't filling it (CSS fix).
+
 ## Conventions (established across projects — follow them)
 
 **Text fields:** the **filled** variant (`<TextField variant="filled">`), never
