@@ -3,6 +3,8 @@ import React from 'react';
 export interface DialogProps {
   open?: boolean;
   onClose?: () => void;
+  /** Primary action; ⌘/Ctrl+Enter inside the dialog triggers it. */
+  onSubmit?: () => void;
   /** Optional hero icon (centers the dialog content). */
   icon?: string;
   headline?: React.ReactNode;

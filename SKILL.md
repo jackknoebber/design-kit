@@ -100,6 +100,10 @@ fills the centered `.screen`; H1 (`md-headline-small`) with the description as
 
 **Lists:** `ListItem`s in an outlined Card with inset `Divider`s (marginLeft 56).
 
+**Dialogs:** pass `onSubmit={save}` to any `Dialog` with a primary action so
+⌘/Ctrl+Enter submits it (keyboard = clicking Save). Also give form dialogs
+`useEscClose(onClose)`. Info/confirm-only dialogs omit `onSubmit`.
+
 **Elevation:** ambient elements (buttons, bars, tables, cards) are FLAT —
 separation via outlines and surface-container tones. Real shadows only on
 floating surfaces (dialog, menu, FAB, snackbar).
