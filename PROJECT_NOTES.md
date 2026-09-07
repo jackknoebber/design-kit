@@ -19,7 +19,7 @@ light/dark) by loading a theme file and setting attributes on `<html>`.
   git/terminal work. Push to `main` = released (consumers pin a commit via
   their lockfile and roll forward explicitly).
 
-## The four design systems
+## The five design systems
 
 | data-design | Look | Source of values |
 |---|---|---|
@@ -27,6 +27,7 @@ light/dark) by loading a theme file and setting attributes on `<html>`.
 | `cupertino` | Classic iOS: hairline enclosed fields, systemBlue #007AFF, SF stack, F7 icons | Hand-authored |
 | `ios26` | Liquid Glass: new blue #0088ff + pink tertiary, HUGE radii (8.5/16/22/34/50), soft diffuse shadows, translucent blurred dialogs, borderless floating cards, F7 icons | Ingested from "iOS and iPadOS 26" community Figma file (`themes/ios26.report.md`) |
 | `gumroad` | Brutalist-playful: pink #FF90E8 + black ink, stone neutrals, BLACK 1px borders, hard offset shadows (4px/8px), 4px corners, Archivo (Mabry Pro stand-in) | Ingested from Jack's copy of the Gumroad DS community file (`themes/gumroad.report.md`) |
+| `loophole` | Dark-first wall-of-screens for looping motion clips: near-black cool surfaces stepped by tone, one cobalt selection blue (#4c8dff seed, quiet neutrals), tight 2–8px corners, deep soft shadows only on floating surfaces; Familjen Grotesk + IBM Plex Mono. Light variant from the same seed. | Built 2026-09-06 for the Loophole gallery front-end (research: "Gallery Field Notes" artifact) |
 
 Theming axes on `<html>` (all independent):
 `data-theme` (light/dark) · `data-accent` (M3 scheme: teal / yellow / salmon) ·
@@ -56,6 +57,15 @@ order+specificity; a design wins over an accent when both are set.
    structural `[data-design='name'] .dk-*` overrides, plus its icon font
    `@import` if any.
 4. **`components/**.jsx`** (+ `.d.ts` siblings) — ~30 React components.
+   `components/gallery/` is the Loophole front-end kit (2026-09-06): `Tile`
+   (preview/poster, moving or hover-play, square/native, cover/contain,
+   selection ring), `FacetRail` (grouped facets with counts, type-to-narrow,
+   click to stack, selected rows pinned), `QueryField` (text + tag/color/
+   source/"like" chips, Backspace pops a chip), `DetailPanel` +
+   `DetailSection` (side or full-screen, Esc / ←→), `SwatchRow` (coverage-
+   weighted swatches), `DensityControl` (columns slider), `Strip` (snapping
+   horizontal row). These use `useStyleOnce` to inject `dk-*` CSS so themes
+   can restyle them by class like the identity components.
    Only the five identity components are CSS-class based so far; the rest
    (Chip, ListItem, Menu, Fab, Switch, Tabs, NavigationRail, …) still style
    inline but consume tokens (colors/fonts/radii all tokenized).
@@ -117,6 +127,10 @@ playground/            Vite gallery site — every token + component, live desig
 
 ## Consumers
 
+- **Loophole** (`~/ClaudeProjects/Loophole`): the Backstage dashboard
+  (`companion-app/ui`, Railway) consumes the kit; the planned standalone
+  gallery front-end is the reason the `loophole` design + `components/
+  gallery/` exist. Playground page: Kits → Gallery (Loophole).
 - **Time Tracker** (`~/ClaudeProjects/time-tracking`, private repo, Railway):
   the first consumer and living reference. Settings → Appearance has the
   design picker (Material 3 / Cupertino / iOS 26 / Gumroad) + teal accent

@@ -1,7 +1,7 @@
 {
   "name": "design-kit",
   "version": "1.0.0",
-  "description": "Jack's personal design system: universal token contract + themes (Material 3 baseline, teal, cupertino) + React components.",
+  "description": "Jack's personal design system: universal token contract + themes (Material 3 baseline + accents, cupertino, ios26, gumroad, loophole) + React components.",
   "type": "module",
   "license": "UNLICENSED",
   "repository": "github:jackknoebber/design-kit",

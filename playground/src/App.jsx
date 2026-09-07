@@ -17,6 +17,7 @@ import { Containment } from './pages/Containment.jsx';
 import { DataDisplay } from './pages/DataDisplay.jsx';
 import { Navigation } from './pages/Navigation.jsx';
 import { Overlays } from './pages/Overlays.jsx';
+import { Gallery } from './pages/Gallery.jsx';
 
 const NAV = [
   {
@@ -42,6 +43,12 @@ const NAV = [
       { id: 'overlays', label: 'Overlays', page: Overlays },
     ],
   },
+  {
+    group: 'Kits',
+    items: [
+      { id: 'gallery', label: 'Gallery (Loophole)', page: Gallery },
+    ],
+  },
 ];
 
 const DESIGNS = [
@@ -49,6 +56,7 @@ const DESIGNS = [
   { value: 'cupertino', label: 'Cupertino' },
   { value: 'ios26', label: 'iOS 26' },
   { value: 'gumroad', label: 'Gumroad' },
+  { value: 'loophole', label: 'Loophole' },
 ];
 
 const ACCENTS = [
@@ -99,7 +107,7 @@ function SidebarContent({ env, route }) {
       <div style={{ padding: '0 14px 4px' }}>
         <div style={{ ...type('title-large'), fontFamily: 'var(--md-ref-typeface-brand)' }}>design-kit</div>
         <div style={{ ...type('body-small'), color: 'var(--md-sys-color-on-surface-variant)' }}>
-          one contract · four design systems
+          one contract · five design systems
         </div>
       </div>
 

@@ -133,6 +133,16 @@ inherit fixed 24px line boxes. Sentence case; short verb labels; no emoji; no
 ad-hoc SVG icons — Material Symbols via `<Icon name="…" />`. 4dp spacing grid;
 touch targets ≥48dp. 16px font on form fields (stops iOS auto-zoom).
 
+## Gallery kit (components/gallery, design `loophole`)
+
+For walls of media: `Tile` in a CSS grid (uniform) or CSS columns (masonry)
+or inside `Strip` (rows); `FacetRail` on the left with counts; one
+`QueryField` above the grid holding text and chips; `DetailPanel` as the
+right column (`mode="side"`) or over everything (`mode="full"`). Keep the
+chrome on `surface-container-low/high`, tiles on `surface`, and reserve
+`primary` for selection. Density, autoplay and square/native are user
+toggles, not design decisions — expose all three.
+
 ## Rules of thumb
 
 - Interactive elements get the state layer (`.md-sl` — components do this).
