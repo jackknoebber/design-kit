@@ -9,7 +9,7 @@ const TILE_CSS = `
 .dk-tile--contain > video, .dk-tile--contain > img { object-fit: contain; background: var(--md-sys-color-surface-container-lowest); }
 .dk-tile--selected { box-shadow: inset 0 0 0 2px var(--md-sys-color-primary); }
 .dk-tile:focus-visible { box-shadow: inset 0 0 0 2px var(--md-sys-color-primary), 0 0 0 2px var(--md-sys-color-surface), 0 0 0 4px var(--md-sys-color-primary); }
-.dk-tile__caption { position: absolute; left: 0; right: 0; bottom: 0; padding: 6px 8px; font: 500 12px/1.3 var(--md-ref-typeface-plain); color: var(--md-sys-color-on-surface); background: linear-gradient(to top, var(--md-sys-color-scrim) 0%, transparent 100%); opacity: 0; transition: opacity var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-standard); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dk-tile__caption { position: absolute; left: 0; right: 0; bottom: 0; padding: 18px 10px 10px; font: 500 12px/1.4 var(--md-ref-typeface-plain); color: var(--md-sys-color-on-surface); background: linear-gradient(to top, var(--md-sys-color-scrim) 0%, transparent 100%); opacity: 0; transition: opacity var(--md-sys-motion-duration-short4) var(--md-sys-motion-easing-standard); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .dk-tile:hover .dk-tile__caption, .dk-tile:focus-visible .dk-tile__caption, .dk-tile--selected .dk-tile__caption { opacity: 1; }
 .dk-tile__badge { position: absolute; top: 6px; left: 6px; padding: 2px 6px; border-radius: var(--md-sys-shape-corner-extra-small); font: 500 10px/1.4 var(--md-ref-typeface-mono); background: var(--md-sys-color-inverse-surface); color: var(--md-sys-color-inverse-on-surface); }
 .dk-tile__slot { position: absolute; inset: 0; }

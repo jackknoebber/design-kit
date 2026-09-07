@@ -4,13 +4,15 @@ import { useStyleOnce } from '../core/stateLayer.js';
 
 const RAIL_CSS = `
 .dk-rail { display: flex; flex-direction: column; min-height: 0; background: var(--md-sys-color-surface-container-low); color: var(--md-sys-color-on-surface); font-family: var(--md-ref-typeface-plain); }
-.dk-rail__search { display: flex; align-items: center; gap: 8px; margin: 10px 10px 6px; padding: 0 10px; height: 36px; border-radius: var(--md-sys-shape-corner-small); background: var(--md-sys-color-surface-container-high); border: var(--dk-border-width) solid transparent; }
+.dk-rail__search { display: flex; align-items: center; gap: 8px; margin: 10px 10px 6px; padding: 0 10px; height: 40px; border-radius: var(--md-sys-shape-corner-small); background: var(--md-sys-color-surface-container-high); border: var(--dk-border-width) solid transparent; }
 .dk-rail__search:focus-within { border-color: var(--md-sys-color-primary); }
-.dk-rail__search input { flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; color: inherit; font: 400 14px/1 var(--md-ref-typeface-plain); }
+.dk-rail__search input { flex: 1; min-width: 0; height: 100%; border: 0; outline: 0; background: transparent; color: inherit; font: 400 14px/1.4 var(--md-ref-typeface-plain); padding: 0; }
 .dk-rail__search input::placeholder { color: var(--md-sys-color-on-surface-variant); }
 .dk-rail__scroll { overflow-y: auto; min-height: 0; padding-bottom: 12px; }
-.dk-rail__group { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 12px 14px 4px; font: 500 11px/1.4 var(--md-ref-typeface-mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--md-sys-color-on-surface-variant); cursor: pointer; user-select: none; }
-.dk-rail__row { display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%; padding: 5px 14px; border: 0; background: transparent; color: var(--md-sys-color-on-surface); font: 400 13px/1.4 var(--md-ref-typeface-plain); text-align: left; cursor: pointer; border-radius: 0; }
+.dk-rail__group { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 8px; padding: 8px 14px; font: 600 13px/1.4 var(--md-ref-typeface-plain); color: var(--md-sys-color-on-surface); background: var(--md-sys-color-surface-container); border-top: var(--dk-border-width) solid var(--md-sys-color-outline-variant); cursor: pointer; user-select: none; }
+.dk-rail__group .dk-rail__count { color: var(--md-sys-color-on-surface); font-weight: 500; }
+.dk-rail__row { display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%; padding: 4px 14px 4px 22px; border: 0; background: transparent; color: var(--md-sys-color-on-surface-variant); font: 400 13px/1.4 var(--md-ref-typeface-plain); text-align: left; cursor: pointer; border-radius: 0; }
+.dk-rail__row:hover { color: var(--md-sys-color-on-surface); }
 .dk-rail__row:hover { background: var(--md-sys-color-surface-container); }
 .dk-rail__row:focus-visible { outline: 2px solid var(--md-sys-color-primary); outline-offset: -2px; }
 .dk-rail__row--on { background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); }
@@ -18,8 +20,8 @@ const RAIL_CSS = `
 .dk-rail__label { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .dk-rail__count { flex: none; font: 400 11px/1 var(--md-ref-typeface-mono); color: var(--md-sys-color-on-surface-variant); font-variant-numeric: tabular-nums; }
 .dk-rail__row--on .dk-rail__count { color: inherit; }
-.dk-rail__empty { padding: 8px 14px; font: 400 12px/1.4 var(--md-ref-typeface-plain); color: var(--md-sys-color-on-surface-variant); }
-.dk-rail__more { padding: 4px 14px 6px; border: 0; background: transparent; color: var(--md-sys-color-primary); font: 500 12px/1.4 var(--md-ref-typeface-plain); cursor: pointer; text-align: left; }
+.dk-rail__empty { padding: 8px 22px; font: 400 12px/1.4 var(--md-ref-typeface-plain); color: var(--md-sys-color-on-surface-variant); }
+.dk-rail__more { padding: 4px 14px 6px 22px; border: 0; background: transparent; color: var(--md-sys-color-primary); font: 500 12px/1.4 var(--md-ref-typeface-plain); cursor: pointer; text-align: left; }
 `;
 
 const fmt = (n) => (typeof n === 'number' ? n.toLocaleString() : n);
