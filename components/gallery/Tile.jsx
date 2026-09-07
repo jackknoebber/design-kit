@@ -4,7 +4,6 @@ import { useStyleOnce } from '../core/stateLayer.js';
 const TILE_CSS = `
 .dk-tile { position: relative; display: block; overflow: hidden; background: var(--md-sys-color-surface-container-highest); border-radius: var(--md-sys-shape-corner-small); cursor: pointer; outline: none; }
 .dk-tile > video, .dk-tile > img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
-.dk-tile--auto > video, .dk-tile--auto > img { position: static; height: auto; }
 .dk-tile--cover > video, .dk-tile--cover > img { object-fit: cover; }
 .dk-tile--contain > video, .dk-tile--contain > img { object-fit: contain; background: var(--md-sys-color-surface-container-lowest); }
 .dk-tile--selected { box-shadow: inset 0 0 0 2px var(--md-sys-color-primary); }
@@ -20,7 +19,8 @@ const TILE_CSS = `
  * A clip in the wall. Plays the preview WebM when `moving`; otherwise shows
  * the poster and, when `hoverPlay`, plays only while hovered. `aspect`
  * "square" crops to 1:1; "native" keeps `ratio` (w/h) and letterboxes when
- * `fit` is "contain"; "auto" lets the media set the height (masonry). Selection ring and keyboard focus come from tokens.
+ * `fit` is "contain"; "auto" takes the media's own ratio (masonry), learned
+ * once from the poster or video and then fixed so walls never reflow. Selection ring and keyboard focus come from tokens.
  */
 export function Tile({
   src,
@@ -45,6 +45,15 @@ export function Tile({
   const rootRef = useRef(null);
   const [hover, setHover] = useState(false);
   const [inView, setInView] = useState(false);
+  // Once a tile has been on screen it keeps its source; only playback is
+  // gated. Dropping the source would change the media's size and, in a
+  // masonry wall, reflow every column under the user.
+  const [seen, setSeen] = useState(false);
+  useEffect(() => { if (inView) setSeen(true); }, [inView]);
+  // For aspect 'auto' the frame takes the media's real ratio the first time
+  // it is known and never changes again; until then `ratio` holds the space.
+  const [natural, setNatural] = useState(null);
+  const learn = (w, h) => { if (w > 0 && h > 0 && natural == null) setNatural(w / h); };
   // Only tiles on (or near) the screen play; a wall of hundreds of clips
   // would otherwise decode everything at once, which is what makes phones lag.
   useEffect(() => {
@@ -63,10 +72,8 @@ export function Tile({
     else { v.pause(); try { v.currentTime = 0; } catch (_) {} }
   }, [playing, src]);
 
-  const cls = ['dk-tile', `dk-tile--${fit}`, aspect === 'auto' && 'dk-tile--auto', selected && 'dk-tile--selected'].filter(Boolean).join(' ');
-  // 'auto' lets the media set the height (masonry); poster-less auto tiles
-  // still get a frame from `ratio` so the wall doesn't collapse while loading.
-  const ar = aspect === 'square' ? '1 / 1' : aspect === 'auto' ? (src || poster ? undefined : `${ratio} / 1`) : `${ratio} / 1`;
+  const cls = ['dk-tile', `dk-tile--${aspect === 'auto' ? 'cover' : fit}`, selected && 'dk-tile--selected'].filter(Boolean).join(' ');
+  const ar = aspect === 'square' ? '1 / 1' : aspect === 'auto' ? `${natural || ratio} / 1` : `${ratio} / 1`;
 
   return (
     <div
@@ -85,10 +92,12 @@ export function Tile({
       {...rest}
     >
       {src ? (
-        <video ref={videoRef} src={inView ? src : undefined} poster={poster || undefined} muted loop playsInline preload={inView ? 'metadata' : 'none'} />
+        <video ref={videoRef} src={seen ? src : undefined} poster={poster || undefined} muted loop playsInline preload={seen ? 'metadata' : 'none'}
+          onLoadedMetadata={(e) => learn(e.currentTarget.videoWidth, e.currentTarget.videoHeight)} />
       ) : poster ? (
-        <img src={poster} alt="" loading="lazy" />
+        <img src={poster} alt="" loading="lazy" onLoad={(e) => learn(e.currentTarget.naturalWidth, e.currentTarget.naturalHeight)} />
       ) : null}
+      {src && poster && natural == null && <img src={poster} alt="" style={{ display: 'none' }} onLoad={(e) => learn(e.currentTarget.naturalWidth, e.currentTarget.naturalHeight)} />}
       {children && <div className="dk-tile__slot">{children}</div>}
       {badge && <span className="dk-tile__badge">{badge}</span>}
       {caption && title && <div className="dk-tile__caption">{title}</div>}
