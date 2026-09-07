@@ -2,11 +2,13 @@ import React from 'react';
 
 export interface DetailPanelProps {
   open?: boolean;
-  /** 'side' fills its column; 'full' covers the viewport with a scrim. */
+  /** 'full' (default) is a modal over the page: media left, details right, related below. 'side' is a column. */
   mode?: 'side' | 'full';
   title?: React.ReactNode;
-  /** The clip itself (video / img), shown large above the body. */
+  /** The clip itself (video / img). */
   media?: React.ReactNode;
+  /** Related strips: across the bottom in full mode, at the end of the body in side mode. */
+  related?: React.ReactNode;
   onClose?: () => void;
   onPrev?: () => void;
   onNext?: () => void;
@@ -14,7 +16,7 @@ export interface DetailPanelProps {
   /** Extra bar controls (download, open source…). */
   actions?: React.ReactNode;
   children?: React.ReactNode;
-  /** Side-mode width in px. */
+  /** Side-mode width in px (default 440). */
   width?: number;
   style?: React.CSSProperties;
 }

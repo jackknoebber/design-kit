@@ -114,7 +114,11 @@ export function Gallery() {
               )}
             </div>
           </div>
-          <DetailPanel open={!!current} mode={panelMode} title={current?.title} onClose={() => setCurrent(null)} onPrev={prev} onNext={next} onToggleMode={() => setPanelMode((m) => (m === 'side' ? 'full' : 'side'))}
+          <DetailPanel open={!!current} mode={panelMode} width={340} title={current?.title} onClose={() => setCurrent(null)} onPrev={prev} onNext={next} onToggleMode={() => setPanelMode((m) => (m === 'side' ? 'full' : 'side'))}
+            related={current && <>
+              <Strip title="Similar by color" tileWidth={panelMode === 'full' ? 180 : 110}>{CLIPS.filter((c) => c.palette === current.palette && c.id !== current.id).slice(0, 10).map((c) => tile(c, { ratio: 16 / 10, caption: false }))}</Strip>
+              <Strip title="Similar by tags" tileWidth={panelMode === 'full' ? 180 : 110}>{CLIPS.filter((c) => c.tags.visual[0] === current.tags.visual[0] && c.id !== current.id).slice(0, 10).map((c) => tile(c, { ratio: 16 / 10, caption: false }))}</Strip>
+            </>}
             media={current && <div style={{ position: 'relative', width: '100%', aspectRatio: `${current.ratio} / 1`, overflow: 'hidden' }}><Preview clip={current} moving={moving} /></div>}
             actions={<><IconButton icon="open_in_new" size="xs" ariaLabel="Open source" /><IconButton icon="download" size="xs" ariaLabel="Download" /></>}>
             {current && (
@@ -124,8 +128,6 @@ export function Gallery() {
                 {Object.entries(current.tags).map(([cat, list]) => (
                   <DetailSection key={cat} label={cat}><Row gap={6}>{list.map((t) => <Chip key={t} variant="filter" label={t} selected={selected.has(t)} onClick={() => toggle({ id: t, label: t }, { id: cat })} />)}</Row></DetailSection>
                 ))}
-                <DetailSection label="Similar by color"><Strip tileWidth={96}>{CLIPS.filter((c) => c.palette === current.palette && c.id !== current.id).slice(0, 8).map((c) => tile(c, { ratio: 16 / 10, caption: false }))}</Strip></DetailSection>
-                <DetailSection label="Similar by tags"><Strip tileWidth={96}>{CLIPS.filter((c) => c.tags.visual[0] === current.tags.visual[0] && c.id !== current.id).slice(0, 8).map((c) => tile(c, { ratio: 16 / 10, caption: false }))}</Strip></DetailSection>
               </>
             )}
           </DetailPanel>
@@ -160,8 +162,8 @@ export function Gallery() {
         <Strip title="kinetic type" count={1240} onTitle={() => {}} tileWidth={180}>{CLIPS.slice(0, 14).map((c) => tile(c, { ratio: 16 / 10 }))}</Strip>
       </Section>
 
-      <Section title="Detail panel, full screen" intro="Same body as the side panel, over a scrim. Esc closes, arrows move.">
-        <Button variant="tonal" icon="open_in_full" onClick={() => { setCurrent(CLIPS[6]); setPanelMode('full'); }}>Open full screen</Button>
+      <Section title="Detail panel, overlay" intro="Media left, details right, related across the bottom, over a scrim. Esc closes, arrows move.">
+        <Button variant="tonal" icon="open_in_full" onClick={() => { setCurrent(CLIPS[6]); setPanelMode('full'); }}>Open as overlay</Button>
       </Section>
     </Page>
   );
