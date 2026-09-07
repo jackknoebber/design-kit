@@ -17,6 +17,8 @@ const QF_CSS = `
 .dk-qf__dot { width: 12px; height: 12px; border-radius: 2px; box-shadow: inset 0 0 0 1px rgba(0,0,0,0.15); }
 .dk-qf__x { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; border: 0; background: transparent; color: inherit; border-radius: var(--md-sys-shape-corner-full); cursor: pointer; padding: 0; }
 .dk-qf__x:hover { background: color-mix(in srgb, currentColor 14%, transparent); }
+/* iOS zooms into fields under 16px; on touch screens keep inputs at 16px. */
+@media (pointer: coarse) { .dk-qf__input { font-size: 16px; } }
 .dk-qf__trailing { display: inline-flex; align-items: center; gap: 2px; margin-left: auto; flex: none; }
 `;
 

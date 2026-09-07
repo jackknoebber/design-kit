@@ -9,6 +9,7 @@ const RAIL_CSS = `
 .dk-rail__search:focus-within { border-color: var(--md-sys-color-primary); }
 .dk-rail__search input { flex: 1; min-width: 0; height: 100%; border: 0; outline: 0; background: transparent; color: inherit; font: 400 14px/1.4 var(--md-ref-typeface-plain); padding: 0; }
 .dk-rail__search input::placeholder { color: var(--md-sys-color-on-surface-variant); }
+@media (pointer: coarse) { .dk-rail__search input { font-size: 16px; } }
 .dk-rail__scroll { flex: 1 1 auto; overflow-y: auto; min-height: 0; padding-bottom: 12px; }
 .dk-rail__group { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 8px; padding: 8px 14px; font: 600 13px/1.4 var(--md-ref-typeface-plain); color: var(--md-sys-color-on-surface); background: var(--md-sys-color-surface-container); border-top: var(--dk-border-width) solid var(--md-sys-color-outline-variant); cursor: pointer; user-select: none; }
 .dk-rail__group .dk-rail__count { color: var(--md-sys-color-on-surface); font-weight: 500; }
