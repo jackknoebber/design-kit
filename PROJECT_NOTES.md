@@ -27,7 +27,7 @@ light/dark) by loading a theme file and setting attributes on `<html>`.
 | `cupertino` | Classic iOS: hairline enclosed fields, systemBlue #007AFF, SF stack, F7 icons | Hand-authored |
 | `ios26` | Liquid Glass: new blue #0088ff + pink tertiary, HUGE radii (8.5/16/22/34/50), soft diffuse shadows, translucent blurred dialogs, borderless floating cards, F7 icons | Ingested from "iOS and iPadOS 26" community Figma file (`themes/ios26.report.md`) |
 | `gumroad` | Brutalist-playful: pink #FF90E8 + black ink, stone neutrals, BLACK 1px borders, hard offset shadows (4px/8px), 4px corners, Archivo (Mabry Pro stand-in) | Ingested from Jack's copy of the Gumroad DS community file (`themes/gumroad.report.md`) |
-| `loophole` | Dark-first wall-of-screens for looping motion clips: near-black cool surfaces stepped by tone, one cobalt selection blue (#4c8dff seed, quiet neutrals), tight 2–8px corners, deep soft shadows only on floating surfaces; Familjen Grotesk + IBM Plex Mono. Light variant from the same seed. | Built 2026-09-06 for the Loophole gallery front-end (research: "Gallery Field Notes" artifact) |
+| `loophole` | Dark-first wall-of-screens for looping motion clips: near-black cool surfaces stepped by tone, one Loophole teal for selection (#01776C seed = the Directus project color, quiet neutrals), tight 2–8px corners, deep soft shadows only on floating surfaces; Familjen Grotesk + IBM Plex Mono. Light variant from the same seed. | Built 2026-09-06 for the Loophole gallery front-end (research: "Gallery Field Notes" artifact) |
 
 Theming axes on `<html>` (all independent):
 `data-theme` (light/dark) · `data-accent` (M3 scheme: teal / yellow / salmon) ·

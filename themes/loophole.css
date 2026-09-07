@@ -8,15 +8,16 @@
    Built 2026-09-06 for the Loophole gallery front-end after the "Gallery
    Field Notes" research: the references with moving tiles all chose black.
    Near-black cool surfaces stepped by tone (no borders between tiles), one
-   restrained blue for selection and chips, tight 2–8px corners so tiles read
+   restrained teal for selection and chips, tight 2–8px corners so tiles read
    as frames rather than cards, and deep soft shadows reserved for the one
    floating surface (detail panel / dialog). The light variant comes from the
    same seed for daylight use; the app defaults to dark.
 
-   Colors: material-color-utilities TonalSpot from #4c8dff with quiet
-   neutrals (--neutral 2 --neutral-variant 4), then the dark surfaces hand-
-   pulled darker and cooler and the dark primary pushed from pale periwinkle
-   to a usable selection blue.
+   Colors: material-color-utilities TonalSpot from #01776C (Loophole's teal,
+   also the Directus project color and the kit's `teal` accent seed) with
+   quiet neutrals (--neutral 2 --neutral-variant 4), then the dark surfaces
+   hand-pulled darker and cooler and the dark primary pushed from pale mint
+   to a usable selection teal.
 
    Activate: import this file (after styles.css) and set
    <html data-design="loophole">. Combines with data-theme="dark".
@@ -52,22 +53,22 @@
 /* ---- Light — daylight variant, cool paper ---- */
 :root[data-design='loophole'],
 .light[data-design='loophole'] {
-  /* Primary — cobalt, the one accent */
-  --md-sys-color-primary: rgb(52, 84, 160);
+  /* Primary — Loophole teal (#01776C, the Directus project color), the one accent */
+  --md-sys-color-primary: rgb(1, 119, 108);
   --md-sys-color-on-primary: rgb(255, 255, 255);
-  --md-sys-color-primary-container: rgb(216, 226, 255);
-  --md-sys-color-on-primary-container: rgb(0, 26, 66);
-  --md-sys-color-inverse-primary: rgb(150, 180, 255);
+  --md-sys-color-primary-container: rgb(160, 242, 228);
+  --md-sys-color-on-primary-container: rgb(0, 40, 36);
+  --md-sys-color-inverse-primary: rgb(64, 208, 188);
   /* Secondary — slate */
-  --md-sys-color-secondary: rgb(87, 94, 113);
+  --md-sys-color-secondary: rgb(74, 99, 95);
   --md-sys-color-on-secondary: rgb(255, 255, 255);
-  --md-sys-color-secondary-container: rgb(219, 226, 249);
-  --md-sys-color-on-secondary-container: rgb(20, 27, 44);
+  --md-sys-color-secondary-container: rgb(204, 232, 226);
+  --md-sys-color-on-secondary-container: rgb(5, 32, 28);
   /* Tertiary — plum, for "similar / highlighted" */
-  --md-sys-color-tertiary: rgb(113, 85, 115);
+  --md-sys-color-tertiary: rgb(70, 97, 121);
   --md-sys-color-on-tertiary: rgb(255, 255, 255);
-  --md-sys-color-tertiary-container: rgb(252, 215, 251);
-  --md-sys-color-on-tertiary-container: rgb(41, 19, 45);
+  --md-sys-color-tertiary-container: rgb(204, 229, 255);
+  --md-sys-color-on-tertiary-container: rgb(0, 29, 49);
   /* Error */
   --md-sys-color-error: rgb(186, 26, 26);
   --md-sys-color-on-error: rgb(255, 255, 255);
@@ -87,7 +88,7 @@
   --md-sys-color-surface-container: rgb(234, 236, 241);
   --md-sys-color-surface-container-high: rgb(228, 230, 236);
   --md-sys-color-surface-container-highest: rgb(222, 224, 231);
-  --md-sys-color-surface-tint: rgb(52, 84, 160);
+  --md-sys-color-surface-tint: rgb(1, 119, 108);
   --md-sys-color-inverse-surface: rgb(44, 46, 52);
   --md-sys-color-inverse-on-surface: rgb(240, 241, 245);
   /* Outline & utility */
@@ -96,39 +97,39 @@
   --md-sys-color-shadow: rgb(0, 0, 0);
   --md-sys-color-scrim: rgb(0, 0, 0);
   /* Fixed accent roles */
-  --md-sys-color-primary-fixed: rgb(216, 226, 255);
-  --md-sys-color-primary-fixed-dim: rgb(174, 198, 255);
-  --md-sys-color-on-primary-fixed: rgb(0, 26, 66);
-  --md-sys-color-on-primary-fixed-variant: rgb(44, 70, 120);
-  --md-sys-color-secondary-fixed: rgb(219, 226, 249);
-  --md-sys-color-secondary-fixed-dim: rgb(191, 198, 220);
-  --md-sys-color-on-secondary-fixed: rgb(20, 27, 44);
-  --md-sys-color-on-secondary-fixed-variant: rgb(63, 71, 89);
-  --md-sys-color-tertiary-fixed: rgb(252, 215, 251);
-  --md-sys-color-tertiary-fixed-dim: rgb(222, 188, 223);
-  --md-sys-color-on-tertiary-fixed: rgb(41, 19, 45);
-  --md-sys-color-on-tertiary-fixed-variant: rgb(88, 62, 91);
+  --md-sys-color-primary-fixed: rgb(158, 242, 229);
+  --md-sys-color-primary-fixed-dim: rgb(130, 213, 201);
+  --md-sys-color-on-primary-fixed: rgb(0, 32, 28);
+  --md-sys-color-on-primary-fixed-variant: rgb(0, 80, 72);
+  --md-sys-color-secondary-fixed: rgb(204, 232, 226);
+  --md-sys-color-secondary-fixed-dim: rgb(177, 204, 198);
+  --md-sys-color-on-secondary-fixed: rgb(5, 32, 28);
+  --md-sys-color-on-secondary-fixed-variant: rgb(51, 75, 71);
+  --md-sys-color-tertiary-fixed: rgb(204, 229, 255);
+  --md-sys-color-tertiary-fixed-dim: rgb(173, 202, 230);
+  --md-sys-color-on-tertiary-fixed: rgb(0, 29, 49);
+  --md-sys-color-on-tertiary-fixed-variant: rgb(45, 73, 97);
 }
 
 /* ---- Dark — the signature: near-black, cool, stepped by tone ---- */
 :root[data-design='loophole'][data-theme='dark'],
 .dark[data-design='loophole'] {
-  /* Primary — selection blue, readable on the darkest tone */
-  --md-sys-color-primary: rgb(124, 162, 255);
-  --md-sys-color-on-primary: rgb(8, 30, 74);
-  --md-sys-color-primary-container: rgb(34, 58, 112);
-  --md-sys-color-on-primary-container: rgb(216, 226, 255);
-  --md-sys-color-inverse-primary: rgb(52, 84, 160);
+  /* Primary — Loophole teal pushed bright enough to read as a selection ring on the darkest tone */
+  --md-sys-color-primary: rgb(64, 208, 188);
+  --md-sys-color-on-primary: rgb(0, 56, 50);
+  --md-sys-color-primary-container: rgb(0, 84, 76);
+  --md-sys-color-on-primary-container: rgb(160, 242, 228);
+  --md-sys-color-inverse-primary: rgb(1, 119, 108);
   /* Secondary — slate */
-  --md-sys-color-secondary: rgb(186, 194, 216);
-  --md-sys-color-on-secondary: rgb(36, 43, 60);
-  --md-sys-color-secondary-container: rgb(52, 60, 78);
-  --md-sys-color-on-secondary-container: rgb(219, 226, 249);
+  --md-sys-color-secondary: rgb(177, 204, 198);
+  --md-sys-color-on-secondary: rgb(28, 53, 49);
+  --md-sys-color-secondary-container: rgb(51, 75, 71);
+  --md-sys-color-on-secondary-container: rgb(204, 232, 226);
   /* Tertiary — plum */
-  --md-sys-color-tertiary: rgb(216, 182, 218);
-  --md-sys-color-on-tertiary: rgb(60, 36, 63);
-  --md-sys-color-tertiary-container: rgb(82, 56, 86);
-  --md-sys-color-on-tertiary-container: rgb(252, 215, 251);
+  --md-sys-color-tertiary: rgb(173, 202, 230);
+  --md-sys-color-on-tertiary: rgb(21, 51, 73);
+  --md-sys-color-tertiary-container: rgb(45, 73, 97);
+  --md-sys-color-on-tertiary-container: rgb(204, 229, 255);
   /* Error */
   --md-sys-color-error: rgb(255, 180, 171);
   --md-sys-color-on-error: rgb(105, 0, 5);
@@ -149,7 +150,7 @@
   --md-sys-color-surface-container: rgb(22, 23, 27);
   --md-sys-color-surface-container-high: rgb(30, 31, 36);
   --md-sys-color-surface-container-highest: rgb(38, 40, 46);
-  --md-sys-color-surface-tint: rgb(124, 162, 255);
+  --md-sys-color-surface-tint: rgb(64, 208, 188);
   --md-sys-color-inverse-surface: rgb(232, 233, 238);
   --md-sys-color-inverse-on-surface: rgb(30, 31, 36);
   /* Outline & utility */
@@ -158,18 +159,18 @@
   --md-sys-color-shadow: rgb(0, 0, 0);
   --md-sys-color-scrim: rgb(0, 0, 0);
   /* Fixed accent roles */
-  --md-sys-color-primary-fixed: rgb(216, 226, 255);
-  --md-sys-color-primary-fixed-dim: rgb(174, 198, 255);
-  --md-sys-color-on-primary-fixed: rgb(0, 26, 66);
-  --md-sys-color-on-primary-fixed-variant: rgb(44, 70, 120);
-  --md-sys-color-secondary-fixed: rgb(219, 226, 249);
-  --md-sys-color-secondary-fixed-dim: rgb(191, 198, 220);
-  --md-sys-color-on-secondary-fixed: rgb(20, 27, 44);
-  --md-sys-color-on-secondary-fixed-variant: rgb(63, 71, 89);
-  --md-sys-color-tertiary-fixed: rgb(252, 215, 251);
-  --md-sys-color-tertiary-fixed-dim: rgb(222, 188, 223);
-  --md-sys-color-on-tertiary-fixed: rgb(41, 19, 45);
-  --md-sys-color-on-tertiary-fixed-variant: rgb(88, 62, 91);
+  --md-sys-color-primary-fixed: rgb(158, 242, 229);
+  --md-sys-color-primary-fixed-dim: rgb(130, 213, 201);
+  --md-sys-color-on-primary-fixed: rgb(0, 32, 28);
+  --md-sys-color-on-primary-fixed-variant: rgb(0, 80, 72);
+  --md-sys-color-secondary-fixed: rgb(204, 232, 226);
+  --md-sys-color-secondary-fixed-dim: rgb(177, 204, 198);
+  --md-sys-color-on-secondary-fixed: rgb(5, 32, 28);
+  --md-sys-color-on-secondary-fixed-variant: rgb(51, 75, 71);
+  --md-sys-color-tertiary-fixed: rgb(204, 229, 255);
+  --md-sys-color-tertiary-fixed-dim: rgb(173, 202, 230);
+  --md-sys-color-on-tertiary-fixed: rgb(0, 29, 49);
+  --md-sys-color-on-tertiary-fixed-variant: rgb(45, 73, 97);
 }
 
 /* ---- Structural: quiet chrome, square-ish fields, sunk dialogs ---- */
