@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { Icon } from '../core/Icon.jsx';
 import { useStyleOnce } from '../core/stateLayer.js';
+import { compactCount } from './format.js';
 
 const RAIL_CSS = `
 .dk-rail { display: flex; flex-direction: column; min-height: 0; background: var(--md-sys-color-surface-container-low); color: var(--md-sys-color-on-surface); font-family: var(--md-ref-typeface-plain); }
@@ -24,7 +25,7 @@ const RAIL_CSS = `
 .dk-rail__more { padding: 4px 14px 6px 22px; border: 0; background: transparent; color: var(--md-sys-color-primary); font: 500 12px/1.4 var(--md-ref-typeface-plain); cursor: pointer; text-align: left; }
 `;
 
-const fmt = (n) => (typeof n === 'number' ? n.toLocaleString() : n);
+const fmt = (n) => (typeof n === 'number' ? compactCount(n) : n);
 
 /**
  * The facet rail: groups of facets with counts, type-to-narrow across every

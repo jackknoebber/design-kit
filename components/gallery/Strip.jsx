@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { IconButton } from '../actions/IconButton.jsx';
 import { useStyleOnce } from '../core/stateLayer.js';
+import { compactCount } from './format.js';
 
 const STRIP_CSS = `
 .dk-strip { display: flex; flex-direction: column; gap: 8px; min-width: 0; font-family: var(--md-ref-typeface-plain); color: var(--md-sys-color-on-surface); }
@@ -26,7 +27,7 @@ export function Strip({ title, count, onTitle, tileWidth = 200, children, style 
     <section className="dk-strip" style={style} {...rest}>
       <div className="dk-strip__head">
         <span className="dk-strip__title" role={onTitle ? 'button' : undefined} tabIndex={onTitle ? 0 : undefined} onClick={onTitle} onKeyDown={(e) => { if (onTitle && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); onTitle(e); } }}>{title}</span>
-        {count != null && <span className="dk-strip__count">{typeof count === 'number' ? count.toLocaleString() : count}</span>}
+        {count != null && <span className="dk-strip__count">{typeof count === 'number' ? compactCount(count) : count}</span>}
         <span className="dk-strip__nav">
           <IconButton icon="chevron_left" size="xs" ariaLabel="Scroll left" onClick={() => by(-1)} />
           <IconButton icon="chevron_right" size="xs" ariaLabel="Scroll right" onClick={() => by(1)} />

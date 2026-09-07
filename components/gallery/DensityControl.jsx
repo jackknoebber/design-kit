@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Icon } from '../core/Icon.jsx';
 import { useStyleOnce } from '../core/stateLayer.js';
 
@@ -13,14 +13,23 @@ const DC_CSS = `
 .dk-density__n { font: 500 12px/1 var(--md-ref-typeface-mono); min-width: 1.5em; text-align: right; color: var(--md-sys-color-on-surface); font-variant-numeric: tabular-nums; }
 `;
 
-/** Columns slider: how many tiles across. */
-export function DensityControl({ value = 5, min = 2, max = 10, onChange, label = 'Columns', style = {}, ...rest }) {
+/**
+ * Columns slider: how many tiles across. `onChange` fires on every tick;
+ * `onCommit` fires once when the drag ends (use it when re-laying out the
+ * wall is expensive). The number shows the live value either way.
+ */
+export function DensityControl({ value = 5, min = 2, max = 10, onChange, onCommit, label = 'Columns', style = {}, ...rest }) {
   useStyleOnce('dk-density', DC_CSS);
+  const [live, setLive] = useState(value);
+  useEffect(() => { setLive(value); }, [value]);
+  const commit = () => { if (onCommit && live !== value) onCommit(live); };
   return (
     <label className="dk-density" title={label} style={style} {...rest}>
       <Icon name="grid_view" size={18} />
-      <input type="range" min={min} max={max} step={1} value={value} aria-label={label} onChange={(e) => onChange && onChange(Number(e.target.value))} />
-      <span className="dk-density__n">{value}</span>
+      <input type="range" min={min} max={max} step={1} value={live} aria-label={label}
+        onChange={(e) => { const n = Number(e.target.value); setLive(n); onChange && onChange(n); }}
+        onPointerUp={commit} onKeyUp={commit} onBlur={commit} onTouchEnd={commit} />
+      <span className="dk-density__n">{live}</span>
     </label>
   );
 }

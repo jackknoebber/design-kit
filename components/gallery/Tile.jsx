@@ -42,8 +42,19 @@ export function Tile({
 }) {
   useStyleOnce('dk-tile', TILE_CSS);
   const videoRef = useRef(null);
+  const rootRef = useRef(null);
   const [hover, setHover] = useState(false);
-  const playing = !!src && (moving || (hoverPlay && hover));
+  const [inView, setInView] = useState(false);
+  // Only tiles on (or near) the screen play; a wall of hundreds of clips
+  // would otherwise decode everything at once, which is what makes phones lag.
+  useEffect(() => {
+    const el = rootRef.current;
+    if (!el || typeof IntersectionObserver === 'undefined') { setInView(true); return; }
+    const io = new IntersectionObserver((es) => setInView(es.some((e) => e.isIntersecting)), { rootMargin: '200px' });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+  const playing = !!src && inView && (moving || (hoverPlay && hover));
 
   useEffect(() => {
     const v = videoRef.current;
@@ -59,6 +70,7 @@ export function Tile({
 
   return (
     <div
+      ref={rootRef}
       className={cls}
       role="button"
       tabIndex={0}
@@ -73,7 +85,7 @@ export function Tile({
       {...rest}
     >
       {src ? (
-        <video ref={videoRef} src={src} poster={poster || undefined} muted loop playsInline preload="metadata" />
+        <video ref={videoRef} src={inView ? src : undefined} poster={poster || undefined} muted loop playsInline preload={inView ? 'metadata' : 'none'} />
       ) : poster ? (
         <img src={poster} alt="" loading="lazy" />
       ) : null}
