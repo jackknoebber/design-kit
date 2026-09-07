@@ -4,6 +4,7 @@ import { useStyleOnce } from '../core/stateLayer.js';
 const TILE_CSS = `
 .dk-tile { position: relative; display: block; overflow: hidden; background: var(--md-sys-color-surface-container-highest); border-radius: var(--md-sys-shape-corner-small); cursor: pointer; outline: none; }
 .dk-tile > video, .dk-tile > img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.dk-tile--auto > video, .dk-tile--auto > img { position: static; height: auto; }
 .dk-tile--cover > video, .dk-tile--cover > img { object-fit: cover; }
 .dk-tile--contain > video, .dk-tile--contain > img { object-fit: contain; background: var(--md-sys-color-surface-container-lowest); }
 .dk-tile--selected { box-shadow: inset 0 0 0 2px var(--md-sys-color-primary); }
@@ -19,7 +20,7 @@ const TILE_CSS = `
  * A clip in the wall. Plays the preview WebM when `moving`; otherwise shows
  * the poster and, when `hoverPlay`, plays only while hovered. `aspect`
  * "square" crops to 1:1; "native" keeps `ratio` (w/h) and letterboxes when
- * `fit` is "contain". Selection ring and keyboard focus come from tokens.
+ * `fit` is "contain"; "auto" lets the media set the height (masonry). Selection ring and keyboard focus come from tokens.
  */
 export function Tile({
   src,
@@ -51,8 +52,10 @@ export function Tile({
     else { v.pause(); try { v.currentTime = 0; } catch (_) {} }
   }, [playing, src]);
 
-  const cls = ['dk-tile', `dk-tile--${fit}`, selected && 'dk-tile--selected'].filter(Boolean).join(' ');
-  const ar = aspect === 'square' ? '1 / 1' : `${ratio} / 1`;
+  const cls = ['dk-tile', `dk-tile--${fit}`, aspect === 'auto' && 'dk-tile--auto', selected && 'dk-tile--selected'].filter(Boolean).join(' ');
+  // 'auto' lets the media set the height (masonry); poster-less auto tiles
+  // still get a frame from `ratio` so the wall doesn't collapse while loading.
+  const ar = aspect === 'square' ? '1 / 1' : aspect === 'auto' ? (src || poster ? undefined : `${ratio} / 1`) : `${ratio} / 1`;
 
   return (
     <div

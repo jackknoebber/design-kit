@@ -8,8 +8,8 @@ export interface TileProps {
   title?: string;
   /** Width / height for `aspect: 'native'`. Default 16/10. */
   ratio?: number;
-  /** 'native' keeps `ratio`; 'square' forces 1:1. */
-  aspect?: 'native' | 'square';
+  /** 'native' keeps `ratio`; 'square' forces 1:1; 'auto' lets the media set the height (masonry). */
+  aspect?: 'native' | 'square' | 'auto';
   /** How media fills the frame: crop or letterbox. */
   fit?: 'cover' | 'contain';
   /** Autoplay the preview. When false, `hoverPlay` decides. */
