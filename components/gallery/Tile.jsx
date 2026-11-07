@@ -65,12 +65,15 @@ export function Tile({
   }, []);
   const playing = !!src && inView && (moving || (hoverPlay && hover));
 
+  // `seen` is a dependency because the source only attaches the render after a
+  // tile comes into view. Without it, play() runs on a video with no source,
+  // nothing asks again, and the wall sits still until `playing` next changes.
   useEffect(() => {
     const v = videoRef.current;
     if (!v) return;
     if (playing) { const p = v.play(); if (p && p.catch) p.catch(() => {}); }
     else { v.pause(); try { v.currentTime = 0; } catch (_) {} }
-  }, [playing, src]);
+  }, [playing, src, seen]);
 
   const cls = ['dk-tile', `dk-tile--${aspect === 'auto' ? 'cover' : fit}`, selected && 'dk-tile--selected'].filter(Boolean).join(' ');
   const ar = aspect === 'square' ? '1 / 1' : aspect === 'auto' ? `${natural || ratio} / 1` : `${ratio} / 1`;
